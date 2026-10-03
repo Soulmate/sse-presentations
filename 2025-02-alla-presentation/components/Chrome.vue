@@ -7,9 +7,9 @@ defineProps<{ dark?: boolean; noFooter?: boolean; noBadge?: boolean }>()
 <template>
   <div v-if="!noBadge" class="badge" :class="{ dark }">{{ $page - 1 }}</div>
   <div v-if="!noFooter" class="footer" :class="{ dark }">
-    <div class="bar">
-      <span><tabler-mail />{{ brand.email }}</span>
-      <span><tabler-world />{{ brand.site }}</span>
+    <div class="bar selectable">
+      <a :href="`mailto:${brand.email}`"><tabler-mail />{{ brand.email }}</a>
+      <a :href="brand.url" target="_blank"><tabler-world />{{ brand.site }}</a>
     </div>
   </div>
 </template>
@@ -28,7 +28,8 @@ defineProps<{ dark?: boolean; noFooter?: boolean; noBadge?: boolean }>()
   color: var(--c-muted); font-size: .74em; letter-spacing: .01em;
 }
 .bar { display: flex; justify-content: space-between; border-top: 1px solid var(--c-line); padding-top: 7px; }
-.bar span { display: inline-flex; align-items: center; gap: .4em; }
+.bar a { display: inline-flex; align-items: center; gap: .4em; color: inherit; text-decoration: none; }
+.bar a:hover { text-decoration: underline; text-underline-offset: 3px; }
 .bar svg { font-size: 1.15em; color: var(--c-tint); }
 .footer.dark { color: rgba(255,255,255,.75); }
 .footer.dark .bar { border-color: rgba(255,255,255,.3); }

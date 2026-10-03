@@ -125,13 +125,13 @@ transition: nudge-left | nudge-right
 
 <div class="fill quote">
 <h2 class="step"><span>1</span>{{ t.quote.beforeTitle }}</h2>
-<div class="grid3">
+<div class="grid3 selectable">
   <Card :i="0" v-bind="t.quote.before[0]"><tabler-package /></Card>
   <Card :i="1" v-bind="t.quote.before[1]"><tabler-route /></Card>
   <Card :i="2" v-bind="t.quote.before[2]"><tabler-clock /></Card>
 </div>
 <h2 class="step" style="--d: 450ms"><span>2</span>{{ t.quote.afterTitle }}</h2>
-<div class="grid3">
+<div class="grid3 selectable">
   <Card :i="3" v-bind="t.quote.after[0]"><tabler-building-factory-2 /></Card>
   <Card :i="4" v-bind="t.quote.after[1]"><tabler-files /></Card>
   <Card :i="5" v-bind="t.quote.after[2]"><tabler-building-warehouse /></Card>
@@ -154,12 +154,12 @@ transition: nudge-left | nudge-right
 # {{ t.customs.title }}
 
 <h2 class="sub a-rise" style="--d: 100ms">{{ t.customs.docsTitle }}</h2>
-<div class="grid3">
+<div class="grid3 selectable">
   <Card :i="0" v-bind="t.customs.docs[0]"><tabler-file-invoice /></Card>
   <Card :i="1" v-bind="t.customs.docs[1]"><tabler-file-certificate /></Card>
   <Card :i="2" v-bind="t.customs.docs[2]"><tabler-id /></Card>
 </div>
-<div class="bottom">
+<div class="bottom selectable">
   <div>
     <h2 class="sub a-rise" style="--d: 600ms">{{ t.customs.countriesTitle }}</h2>
     <p class="countries a-rise" style="--d: 680ms">{{ t.customs.countriesText }}</p>
@@ -257,7 +257,7 @@ noFooter: true
 ---
 
 <script setup>
-import { brand, vcard } from './brand'
+import { brand, vcard, addressLine, mapsUrl } from './brand'
 </script>
 
 <div class="contacts">
@@ -266,11 +266,11 @@ import { brand, vcard } from './brand'
 
 <Qr class="a-pop" style="--d: 250ms" :value="vcard" :size="150" />
 
-<ul class="lines">
+<ul class="lines selectable">
   <li class="a-left" style="--d: 450ms"><tabler-phone /><a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a></li>
   <li class="a-left" style="--d: 560ms"><tabler-mail /><a :href="`mailto:${brand.email}`">{{ brand.email }}</a></li>
-  <li class="a-left" style="--d: 670ms"><tabler-world /><a :href="brand.url">{{ brand.site }}</a></li>
-  <li class="a-left" style="--d: 780ms"><tabler-map-pin /><span>{{ brand.address.street }}, {{ brand.address.zip }} {{ brand.address.city }}, {{ brand.address.country }}</span></li>
+  <li class="a-left" style="--d: 670ms"><tabler-world /><a :href="brand.url" target="_blank">{{ brand.site }}</a></li>
+  <li class="a-left" style="--d: 780ms"><tabler-map-pin /><a :href="mapsUrl" target="_blank" class="addr">{{ addressLine }}</a></li>
 </ul>
 
 </div>
@@ -282,4 +282,6 @@ import { brand, vcard } from './brand'
 .contacts .lines li { display: grid; grid-template-columns: 1.6em 1fr; align-items: center; gap: .5em; font-size: .98em; }
 .contacts .lines svg { color: var(--c-brand); font-size: 1.3em; }
 .contacts .lines a { color: var(--c-ink); text-decoration: none; font-weight: 600; }
+.contacts .lines a.addr { font-weight: 400; }
+.contacts .lines a:hover { color: var(--c-brand); text-decoration: underline; text-underline-offset: 3px; }
 </style>

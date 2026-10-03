@@ -8,6 +8,10 @@ export const brand = {
   address: { street: 'Balthasar Straße 65', city: 'Köln', zip: '50670', country: 'Germany' },
 }
 
+// One-line address and a Google Maps link to it (contacts slide)
+export const addressLine = `${brand.address.street}, ${brand.address.zip} ${brand.address.city}, ${brand.address.country}`
+export const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(addressLine)}`
+
 // Contact card encoded in the QR on the contacts slide (same as the source pptx).
 export const vcard = [
   'BEGIN:VCARD',
