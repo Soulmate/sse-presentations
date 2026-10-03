@@ -13,7 +13,10 @@ Pages must be set to **Settings → Pages → Source: GitHub Actions**.
 - `npm ci` (if no `node_modules`), and on CI installs the Chromium that matches the deck's playwright
 - `slidev build --base /sse-presentations/<folder>/` → `_site/<folder>/` (all languages, picked by `?lang=xx`)
 - one PDF per language, from `locales/*.ts` → `_site/<folder>/slides-<lang>.pdf`
-- then writes `_site/index.html`: title and cover image come from the first frontmatter block of `slides.md` (`title:`, `image:`)
+- then copies `site/` into `_site/` and fills the deck cards into `site/index.html` (the `<!-- DECKS -->` comment).
+  Card title, cover photo and logo come from the first frontmatter block of `slides.md` (`title:`, `image:`, `logo:`),
+  the date from the folder name (`2025-02-...` → February 2025).
+  The look of the index (deck colours, fonts, hero photo `site/hero.jpg`) is edited in `site/index.html` as plain HTML/CSS.
 
 Build the whole site locally:
 

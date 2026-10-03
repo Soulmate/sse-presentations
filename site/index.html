@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- Index page of the Pages site. scripts/build-site.mjs copies site/ into _site/ and replaces the DECKS comment with one card per deck. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SSE Presentations</title>
+<link rel="icon" href="sse-logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Same tokens as the deck (styles/main.css) */
+  :root {
+    --c-bg: #fffcf5;
+    --c-card: #f3eee3;
+    --c-ink: #2b4150;
+    --c-muted: #8a949a;
+    --c-brand: #124e73;
+    --c-tint: #5195a2;
+    --c-line: #d9d4c9;
+    --c-tint-deep: #0d3550;
+    --c-glow: #3fd0c9;
+    --f-body: 'Source Sans 3', system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--c-bg); color: var(--c-ink); font: 17px/1.55 var(--f-body); }
+  h1, h2 { font-weight: 700; color: var(--c-brand); margin: 0; letter-spacing: -0.01em; }
+
+  /* Teal-tinted photo, as on the cover slide */
+  .photo { position: relative; overflow: hidden; background: var(--c-tint-deep); }
+  .photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .photo::after { content: ''; position: absolute; inset: 0; background: var(--c-tint); opacity: .67; }
+
+  .hero { height: clamp(220px, 38vw, 380px); display: grid; place-items: center; }
+  .hero > img { animation: kenburns 18s ease-out both; }
+  .hero .content { position: relative; z-index: 1; text-align: center; padding: 0 16px; }
+  .hero .logo { width: min(420px, 70vw); height: auto; filter: drop-shadow(0 6px 40px rgba(0,0,0,.25));
+                animation: rise 1.4s cubic-bezier(.2,.7,.2,1) .2s both; }
+  .hero p { margin: 18px 0 0; color: #fff; font: 600 clamp(14px, 1.8vw, 18px)/1.2 var(--f-body); letter-spacing: .28em; text-transform: uppercase;
+            opacity: .9; animation: fade 1s ease .9s both; }
+  @keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
+  @keyframes rise { from { opacity: 0; transform: scale(1.15); filter: blur(8px); } }
+  @keyframes fade { from { opacity: 0; } }
+
+  main { max-width: 960px; margin: 0 auto; padding: 48px 16px 24px; }
+  .section-title { font-size: 1.6em; margin-bottom: 24px; }
+
+  .deck { display: grid; grid-template-columns: 340px 1fr; background: var(--c-card); border-radius: 6px;
+          overflow: hidden; margin-bottom: 24px; }
+  .deck .thumb { min-height: 200px; display: block; }
+  .deck .thumb > img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+  .deck .thumb:hover > img { transform: scale(1.05); }
+  .deck .thumb .logo { position: absolute; z-index: 1; inset: 0; margin: auto; width: 58%; height: auto;
+                       filter: drop-shadow(0 4px 20px rgba(0,0,0,.25)); }
+  .deck .body { padding: 26px 30px 28px; }
+  .deck .date { color: var(--c-muted); font-size: .85em; letter-spacing: .06em; text-transform: uppercase; }
+  .deck h2 { font-size: 1.7em; line-height: 1.15; margin: 4px 0 20px; }
+
+  .langs { display: grid; grid-template-columns: auto auto auto; justify-content: start; align-items: center; gap: 10px 12px; }
+  .langs .name { font-weight: 600; padding-right: 8px; }
+  .btn { display: inline-flex; align-items: center; gap: 7px; padding: 7px 15px; border-radius: 6px; font-size: .9em;
+         text-decoration: none; white-space: nowrap; transition: background .15s, color .15s, border-color .15s; }
+  .btn svg { width: 17px; height: 17px; flex: none; }
+  .btn.primary { background: var(--c-brand); color: #fff; }
+  .btn.primary:hover { background: var(--c-tint-deep); }
+  .btn.ghost { color: var(--c-brand); border: 1px solid var(--c-line); background: var(--c-bg); }
+  .btn.ghost:hover { border-color: var(--c-tint); }
+
+  footer { text-align: center; color: var(--c-muted); font-size: .85em; padding: 24px 16px 36px; }
+  footer a { color: inherit; }
+
+  @media (max-width: 720px) {
+    .deck { grid-template-columns: 1fr; }
+    .deck .thumb { min-height: 0; aspect-ratio: 16 / 9; }
+    .deck .body { padding: 20px 18px 22px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<header class="hero photo">
+  <img src="hero.jpg" alt="">
+  <div class="content">
+    <img class="logo" src="sse-logo.svg" alt="SSE">
+    <p>Presentations</p>
+  </div>
+</header>
+
+<main>
+  <h1 class="section-title">Decks</h1>
+  <!-- DECKS -->
+</main>
+
+<footer>help@sse-logistics.de — <a href="https://sse-logistics.de">sse-logistics.de</a></footer>
+</body>
+</html>

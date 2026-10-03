@@ -5,7 +5,7 @@
 //   node scripts/build-site.mjs              # BASE_PATH defaults to /sse-presentations/
 //   BASE_PATH=/ node scripts/build-site.mjs  # e.g. to preview _site/ with a local static server
 import { execSync } from 'node:child_process'
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const root = new URL('..', import.meta.url).pathname
@@ -17,11 +17,11 @@ const LANG_NAMES = { en: 'English', es: 'Español', de: 'Deutsch', fr: 'Françai
 const run = (cmd, cwd, env = {}) =>
   execSync(cmd, { cwd, stdio: 'inherit', env: { ...process.env, ...env } })
 
-// First frontmatter block of slides.md: `title:` and the cover `image:`
+// First frontmatter block of slides.md: `title:`, the cover `image:` and `logo:`
 function headmatter(dir) {
   const fm = readFileSync(join(root, dir, 'slides.md'), 'utf8').match(/^---\n([\s\S]*?)\n---/)?.[1] ?? ''
   const get = key => fm.match(new RegExp(`^${key}:\\s*(.+)$`, 'm'))?.[1].trim().replace(/^['"]|['"]$/g, '')
-  return { title: get('title') ?? dir, image: get('image') }
+  return { title: get('title') ?? dir, image: get('image'), logo: get('logo') }
 }
 
 function languages(dir) {
@@ -55,66 +55,35 @@ for (const dir of decks) {
 
 const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c])
 
-const cards = built.map(({ dir, langs, title, image }) => `
-    <article class="deck">
-      ${image ? `<a class="thumb" href="${dir}/?lang=${langs[0]}"><img src="${dir}/${esc(image)}" alt="" loading="lazy"></a>` : ''}
-      <div class="body">
-        <h2>${esc(title)}</h2>
-        <p class="dir">${esc(dir)}</p>
-        <table>
-          ${langs.map(l => `<tr>
-            <th>${LANG_NAMES[l] ?? l}</th>
-            <td><a class="btn" href="${dir}/?lang=${l}">Open slides</a></td>
-            <td><a class="btn ghost" href="${dir}/slides-${l}.pdf" download>PDF</a></td>
-          </tr>`).join('\n          ')}
-        </table>
-      </div>
-    </article>`).join('\n')
+// "2025-02-alla-presentation" -> "February 2025"
+function dateLabel(dir) {
+  const m = dir.match(/^(\d{4})-(\d{2})/)
+  return m ? new Date(+m[1], +m[2] - 1).toLocaleString('en', { month: 'long', year: 'numeric' }) : ''
+}
 
-writeFileSync(join(site, 'index.html'), `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>SSE Presentations</title>
-<style>
-  :root {
-    --bg: #fffcf5; --card: #f3eee3; --ink: #2b4150; --muted: #6f7b82; --brand: #124e73; --line: #d9d4c9;
-    color-scheme: light;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root { --bg: #0f1d27; --card: #172a37; --ink: #dfe6ea; --muted: #8fa0aa; --brand: #7cc4dc; --line: #2a4252; color-scheme: dark; }
-  }
-  * { box-sizing: border-box; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font: 16px/1.5 system-ui, sans-serif; }
-  main { max-width: 880px; margin: 0 auto; padding: 48px 16px; }
-  h1 { color: var(--brand); font-weight: 600; margin: 0 0 32px; }
-  .deck { display: grid; grid-template-columns: 280px 1fr; gap: 24px; background: var(--card);
-          border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
-  .thumb img { display: block; width: 100%; height: 100%; object-fit: cover; aspect-ratio: 16/9; }
-  .body { padding: 20px 24px 20px 0; }
-  h2 { color: var(--brand); margin: 0; font-weight: 600; }
-  .dir { color: var(--muted); margin: 2px 0 16px; font-size: 14px; }
-  table { border-collapse: collapse; }
-  th { text-align: left; font-weight: 500; padding: 6px 16px 6px 0; }
-  td { padding: 6px 8px 6px 0; }
-  .btn { display: inline-block; padding: 6px 14px; border-radius: 6px; background: var(--brand); color: var(--bg);
-         text-decoration: none; font-size: 14px; }
-  .btn.ghost { background: transparent; color: var(--brand); border: 1px solid var(--line); }
-  .btn:hover { opacity: .85; }
-  @media (max-width: 640px) {
-    .deck { grid-template-columns: 1fr; gap: 0; }
-    .body { padding: 16px; }
-  }
-</style>
-</head>
-<body>
-<main>
-  <h1>SSE Presentations</h1>
-${cards}
-</main>
-</body>
-</html>
-`)
+const ICON_PLAY = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4v16l13-8z"/></svg>'
+const ICON_DOWNLOAD = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/><path d="M7 11l5 5l5-5"/><path d="M12 4v12"/></svg>'
+
+const cards = built.map(({ dir, langs, title, image, logo }) => `
+  <article class="deck">
+    <a class="thumb photo" href="${dir}/?lang=${langs[0]}" aria-label="${esc(title)}">
+      ${image ? `<img src="${dir}/${esc(image)}" alt="" loading="lazy">` : ''}
+      ${logo ? `<img class="logo" src="${dir}/${esc(logo)}" alt="">` : ''}
+    </a>
+    <div class="body">
+      <div class="date">${dateLabel(dir)}</div>
+      <h2>${esc(title)}</h2>
+      <div class="langs">
+        ${langs.map(l => `<span class="name">${LANG_NAMES[l] ?? l}</span>
+        <a class="btn primary" href="${dir}/?lang=${l}">${ICON_PLAY}Open slides</a>
+        <a class="btn ghost" href="${dir}/slides-${l}.pdf" download="${dir}-${l}.pdf">${ICON_DOWNLOAD}PDF</a>`).join('\n        ')}
+      </div>
+    </div>
+  </article>`).join('\n')
+
+// site/ holds the index template and its assets
+cpSync(join(root, 'site'), site, { recursive: true })
+const template = readFileSync(join(root, 'site', 'index.html'), 'utf8')
+writeFileSync(join(site, 'index.html'), template.replace('<!-- DECKS -->', cards))
 
 console.log(`\nBuilt ${built.length} deck(s) into _site/`)
