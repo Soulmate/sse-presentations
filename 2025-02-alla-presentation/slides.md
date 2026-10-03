@@ -86,9 +86,10 @@ With On Board Courier (OBC), a dedicated courier personally collects your urgent
 
 <style>
 .intro { margin-bottom: .9em; }
+.intro:first-child { margin-top: 22px; } /* clear the page badge */
 .intro h2 { margin-bottom: .5em; }
 .intro p { font-size: .84em; }
-.perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3em 0; margin-top: 1.1em; text-align: center; }
+.perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em 0; margin-top: .8em; text-align: center; }
 .perks > div { display: flex; flex-direction: column; align-items: center; gap: .6em; }
 .perks svg { font-size: 2.3em; color: var(--c-brand); }
 .perks h3 { font-size: .95em; }
@@ -217,7 +218,7 @@ layout: page
 
 <h2 class="sub">Supported Countries</h2>
 
-<p class="countries">We provide customs clearance services for a broad range of countries worldwide, including:<br>Mexico | United States | Europe | And many others</p>
+<p class="countries">We provide customs clearance services for a broad range of countries worldwide, including:<br>Mexico | United States | European Union | And many others</p>
 
 <p class="note"><strong>Note:</strong> Customs procedures vary by country and airport. Contact us for specific country requirements and tailored support.</p>
 
