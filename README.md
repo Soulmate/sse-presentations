@@ -9,6 +9,7 @@
 - slides.md          — all text and slide order (this is what you translate / edit)
 - brand.ts           — email, site, phone, QR target
 - styles/main.css    — colors and fonts (tokens at the top); photo tint
+- public/img/sse-logo.svg — cover logo (set via `logo:` in the cover frontmatter)
 - layouts/           — cover, split (photo half), page, photo (full-bleed)
 - components/        — IconRow, Timeline, Qr, Chrome (page number + footer)
 - public/img/        — photos (any photo gets the teal tint automatically)

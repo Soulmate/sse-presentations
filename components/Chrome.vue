@@ -17,7 +17,7 @@ defineProps<{ dark?: boolean; noFooter?: boolean; noBadge?: boolean }>()
   min-width: 30px; height: 30px; padding: 0 6px; box-sizing: border-box;
   display: grid; place-items: center; border-radius: 7px;
   background: #d9d6cf; color: #fff;
-  font: 700 18px/1 var(--f-display);
+  font: 500 18px/1 var(--f-display);
 }
 .badge.dark { background: rgba(255,255,255,.75); color: var(--c-tint-deep); }
 .footer {

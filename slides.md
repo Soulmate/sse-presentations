@@ -10,9 +10,10 @@ fonts:
 routerMode: hash
 layout: cover
 image: img/cover.jpg
+logo: img/sse-logo.svg
 ---
 
-# SSE
+<!-- cover: the logo comes from the layout -->
 
 ---
 layout: split
@@ -87,7 +88,7 @@ With On Board Courier (OBC), a dedicated courier personally collects your urgent
 .intro { margin-bottom: .9em; }
 .intro h2 { margin-bottom: .5em; }
 .intro p { font-size: .84em; }
-.perks { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 1.6em; text-align: center; }
+.perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3em 0; margin-top: 1.1em; text-align: center; }
 .perks > div { display: flex; flex-direction: column; align-items: center; gap: .6em; transition: all .5s; }
 .perks svg { font-size: 2.3em; color: var(--c-brand); }
 .perks h3 { font-size: .95em; }
@@ -216,18 +217,16 @@ layout: page
 
 <h2 class="sub">Supported Countries</h2>
 
-<p class="countries">We provide customs clearance services for a broad range of countries worldwide, including:</p>
-<div class="chips"><span>Mexico</span><span>United States</span><span>Europe</span><span>And many others</span></div>
+<p class="countries">We provide customs clearance services for a broad range of countries worldwide, including:<br>Mexico | United States | Europe | And many others</p>
 
 <p class="note"><strong>Note:</strong> Customs procedures vary by country and airport. Contact us for specific country requirements and tailored support.</p>
 
 <style>
 h1 { font-size: 2.2em; margin-bottom: 14px; }
 .sub { font-size: 1.1em; }
+.sub, .grid3 h3 { font-weight: 700; } /* bold in the pptx on this slide only */
 .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; margin: .7em 0 1.2em; font-size: .86em; }
-.countries { font-size: .88em; margin-top: .5em; }
-.chips { display: flex; gap: .5em; margin: .5em 0 .9em; }
-.chips span { background: var(--c-card); color: var(--c-brand); padding: .2em .75em; border-radius: 99px; font-size: .82em; font-weight: 600; }
+.countries { font-size: .88em; margin: .5em 0 .9em; }
 .note { font-size: .82em; }
 </style>
 
@@ -294,7 +293,7 @@ image: img/runway.jpg
 .ind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6em 0; text-align: center; }
 .ind > div { display: flex; flex-direction: column; align-items: center; gap: .5em; transition: all .5s cubic-bezier(.2,.7,.2,1); }
 .ind svg { font-size: 2.6em; }
-.ind span { font: 700 1.15em var(--f-display); }
+.ind span { font: 500 1.15em var(--f-display); }
 .ind > div.slidev-vclick-hidden { transform: translateY(16px) scale(.95); }
 </style>
 
@@ -318,5 +317,5 @@ import { brand } from './brand'
 <style>
 .contacts { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2em; }
 .contacts h2 { font-size: 1.6em; margin-bottom: .6em; }
-.contacts a { font: 700 1.15em var(--f-display); color: var(--c-brand); text-decoration: none; }
+.contacts a { font: 500 1.15em var(--f-display); color: var(--c-brand); text-decoration: none; }
 </style>

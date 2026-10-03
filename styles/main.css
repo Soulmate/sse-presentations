@@ -1,15 +1,16 @@
 /* ---------- Brand tokens: change these to restyle the whole deck ---------- */
 :root {
-  --c-bg: #fdfaf3;          /* cream page */
-  --c-card: #f1ede4;        /* card fill */
-  --c-ink: #253c4d;         /* body text */
+  --c-bg: #fffcf5;          /* cream page */
+  --c-card: #f3eee3;        /* card fill */
+  --c-ink: #2b4150;         /* body text */
   --c-muted: #9aa3a8;       /* footer */
-  --c-brand: #134a6e;       /* headings, icons */
-  --c-tint: #1f7d8c;        /* photo tint */
+  --c-brand: #124e73;       /* headings, icons */
+  --c-tint: #5195a2;        /* photo tint (overlay colour from the pptx) */
+  --c-line: #d9d4c9;        /* timeline lines */
   --c-tint-deep: #0d3550;
   --c-glow: #3fd0c9;
 
-  --f-display: 'Comfortaa', system-ui, sans-serif;
+  --f-display: 'MuseoModerno', system-ui, sans-serif;
   --f-body: 'Source Sans 3', system-ui, sans-serif;
 }
 
@@ -22,7 +23,7 @@
   height: 100%;
 }
 
-h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 700; color: var(--c-brand); margin: 0; letter-spacing: -0.01em; }
+h1, h2, h3, h4 { font-family: var(--f-display); font-weight: 500; color: var(--c-brand); margin: 0; letter-spacing: -0.01em; }
 h1 { font-size: 2.6em; line-height: 1.1; }
 h2 { font-size: 1.45em; }
 h3 { font-size: 1.05em; color: var(--c-ink); }
@@ -31,20 +32,14 @@ strong { color: var(--c-ink); font-weight: 700; }
 
 .pad { padding: 2.1em 2.7em 2.4em; height: 100%; box-sizing: border-box; }
 
-/* ---------- Photo tint: duotone teal over any photo ---------- */
-.photo { position: relative; overflow: hidden; background: var(--c-tint-deep); }
+/* ---------- Photo tint: teal overlay over the colour photo, as in the pptx ---------- */
+.photo { position: relative; overflow: hidden; background: var(--c-tint-deep); --tint-alpha: .67; }
 .photo > img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(1) contrast(1.05) brightness(1.05);
 }
 .photo::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(160deg, var(--c-tint) 0%, var(--c-tint-deep) 100%);
-  mix-blend-mode: color; opacity: .95;
-}
-.photo::before {
   content: ''; position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(180deg, rgba(13,53,80,.15), rgba(13,53,80,.45));
+  background: var(--c-tint); opacity: var(--tint-alpha);
 }
 .photo.kenburns > img { animation: kenburns 18s ease-out both; }
 @keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
