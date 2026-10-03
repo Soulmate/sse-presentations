@@ -1,0 +1,21 @@
+{
+  "name": "deck",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@fontsource/comfortaa": "^5.3.0",
+    "@fontsource/source-sans-3": "^5.3.0",
+    "@iconify-json/tabler": "^1.2.41",
+    "@slidev/cli": "^53.0.0",
+    "@slidev/theme-default": "^0.25.0",
+    "playwright-chromium": "^1.63.0",
+    "qrcode": "^1.5.4"
+  }
+}
