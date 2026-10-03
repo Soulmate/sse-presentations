@@ -14,8 +14,8 @@ Published with the other decks on GitHub Pages, see the README in the repo root.
 - brand.ts           — email, site, phone, address; QR on the contacts slide is a vCard built from these
 - styles/main.css    — colors and fonts (tokens at the top); photo tint
 - public/img/sse-logo.svg — cover logo (set via `logo:` in the cover frontmatter)
-- layouts/           — cover, split (photo half), page, photo (full-bleed)
-- components/        — IconRow, Timeline, Qr, Chrome (page number + footer)
+- layouts/           — cover, split (photo half, optional logo on it), page, photo (full-bleed)
+- components/        — IconRow, Card (icon + title + dotted list), Timeline, Qr, Chrome (page number + footer)
 - public/img/        — photos (any photo gets the teal tint automatically)
 
 Icons: any Tabler icon as <tabler-name />, see https://tabler.io/icons

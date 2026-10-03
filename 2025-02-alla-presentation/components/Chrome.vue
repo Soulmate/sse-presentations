@@ -7,7 +7,10 @@ defineProps<{ dark?: boolean; noFooter?: boolean; noBadge?: boolean }>()
 <template>
   <div v-if="!noBadge" class="badge" :class="{ dark }">{{ $page - 1 }}</div>
   <div v-if="!noFooter" class="footer" :class="{ dark }">
-    {{ brand.email }} — {{ brand.site }}
+    <div class="bar">
+      <span><tabler-mail />{{ brand.email }}</span>
+      <span><tabler-world />{{ brand.site }}</span>
+    </div>
   </div>
 </template>
 
@@ -16,13 +19,18 @@ defineProps<{ dark?: boolean; noFooter?: boolean; noBadge?: boolean }>()
   position: absolute; top: 12px; right: 14px; z-index: 20;
   min-width: 30px; height: 30px; padding: 0 6px; box-sizing: border-box;
   display: grid; place-items: center; border-radius: 7px;
-  background: #d9d6cf; color: #fff;
-  font: 500 18px/1 var(--f-display);
+  background: var(--c-card); color: var(--c-brand);
+  font: 700 15px/1 var(--f-body);
 }
 .badge.dark { background: rgba(255,255,255,.75); color: var(--c-tint-deep); }
 .footer {
-  position: absolute; bottom: 14px; left: 0; right: 0; z-index: 20; text-align: center;
-  color: var(--c-muted); font-size: .78em; letter-spacing: .01em;
+  position: absolute; bottom: 12px; left: 0; right: 0; z-index: 20; padding: 0 43px; /* same as .pad (2.7em of 16px) */
+  color: var(--c-muted); font-size: .74em; letter-spacing: .01em;
 }
-.footer.dark { color: rgba(255,255,255,.65); }
+.bar { display: flex; justify-content: space-between; border-top: 1px solid var(--c-line); padding-top: 7px; }
+.bar span { display: inline-flex; align-items: center; gap: .4em; }
+.bar svg { font-size: 1.15em; color: var(--c-tint); }
+.footer.dark { color: rgba(255,255,255,.75); }
+.footer.dark .bar { border-color: rgba(255,255,255,.3); }
+.footer.dark svg { color: rgba(255,255,255,.75); }
 </style>

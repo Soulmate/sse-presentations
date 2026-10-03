@@ -17,7 +17,7 @@ const es: Messages = {
     title: '¿Cómo trabajamos?',
     rows: [
       'Operamos 24/7 con cobertura global y respuesta rápida',
-      'Cotizaciones OBC estándar en 15 min y NFO en 30 min',
+      'Cotizaciones OBC estándar en 15\u00a0min y NFO en 30\u00a0min',
       'Red global de couriers cuidadosamente seleccionada',
       'Seguimiento en tiempo real y total transparencia',
       'Comunicación constante, desde la cotización hasta el POD',
@@ -64,7 +64,8 @@ const es: Messages = {
       { title: 'Documentos del courier', items: ['Pasaporte', 'Boletos de avión'] },
     ],
     countriesTitle: 'Países disponibles',
-    countries: 'Ofrecemos servicios de despacho de aduanas en una amplia variedad de países en todo el mundo, incluyendo:<br>México | Estados Unidos | Unión Europea | Y muchos más',
+    countriesText: 'Ofrecemos servicios de despacho de aduanas en una amplia variedad de países en todo el mundo, incluyendo:',
+    countries: ['México', 'Estados Unidos', 'Unión Europea', 'Y muchos más'],
     note: '<strong>Nota:</strong> Los procedimientos aduaneros varían según el país y el aeropuerto. Contáctenos para conocer los requisitos específicos de cada país y recibir asistencia personalizada.',
   },
   services: {

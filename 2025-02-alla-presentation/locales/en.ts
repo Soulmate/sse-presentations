@@ -16,7 +16,7 @@ const en = {
     title: 'How We Work',
     rows: [
       'Operating 24/7 with global coverage and fast response',
-      'Standard OBC quotes within 15 min, NFO within 30 min',
+      'Standard OBC quotes within 15\u00a0min, NFO within 30\u00a0min',
       'Carefully selected global courier network',
       'Real-time tracking and full transparency',
       'Constant communication, from quote to POD',
@@ -63,7 +63,8 @@ const en = {
       { title: 'Courier-Specific', items: ['Passport', 'Flight Tickets'] },
     ],
     countriesTitle: 'Supported Countries',
-    countries: 'We provide customs clearance services for a broad range of countries worldwide, including:<br>Mexico | United States | European Union | And many others', // html
+    countriesText: 'We provide customs clearance services for a broad range of countries worldwide, including:',
+    countries: ['Mexico', 'United States', 'European Union', 'And many others'],
     note: '<strong>Note:</strong> Customs procedures vary by country and airport. Contact us for specific country requirements and tailored support.', // html
   },
   services: {

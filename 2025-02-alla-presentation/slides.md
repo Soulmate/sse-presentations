@@ -58,51 +58,51 @@ side: right
 .list { display: flex; flex-direction: column; gap: 1.35em; }
 </style>
 
+
 ---
 layout: page
 ---
 
-<div class="card intro" v-motion :initial="{ opacity: 0, y: 16 }" :enter="{ opacity: 1, y: 0 }">
-
-## {{ t.obc.whatTitle }}
-
-{{ t.obc.whatText }}
-
+<div class="fill obc">
+<div class="intro">
+  <div class="card" v-motion :initial="{ opacity: 0, y: 16 }" :enter="{ opacity: 1, y: 0 }">
+    <h2>{{ t.obc.whatTitle }}</h2>
+    <p>{{ t.obc.whatText }}</p>
+  </div>
+  <div class="card" v-motion :initial="{ opacity: 0, y: 16 }" :enter="{ opacity: 1, y: 0, transition: { delay: 150 } }">
+    <h2>{{ t.obc.howTitle }}</h2>
+    <p>{{ t.obc.howText }}</p>
+  </div>
 </div>
-
-<div class="card intro" v-motion :initial="{ opacity: 0, y: 16 }" :enter="{ opacity: 1, y: 0, transition: { delay: 150 } }">
-
-## {{ t.obc.howTitle }}
-
-{{ t.obc.howText }}
-
-</div>
-
 <div class="perks">
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 400, duration: 600 } }"><tabler-run /><h3>{{ t.obc.perks[0] }}</h3></div>
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><tabler-shield-lock /><h3>{{ t.obc.perks[1] }}</h3></div>
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 640, duration: 600 } }"><tabler-map-2 /><h3>{{ t.obc.perks[2] }}</h3></div>
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 760, duration: 600 } }"><tabler-mood-smile-beam /><h3>{{ t.obc.perks[3] }}</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 400, duration: 600 } }"><span class="bubble"><tabler-run /></span><h3>{{ t.obc.perks[0] }}</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><span class="bubble"><tabler-shield-lock /></span><h3>{{ t.obc.perks[1] }}</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 640, duration: 600 } }"><span class="bubble"><tabler-map-2 /></span><h3>{{ t.obc.perks[2] }}</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 760, duration: 600 } }"><span class="bubble"><tabler-mood-smile-beam /></span><h3>{{ t.obc.perks[3] }}</h3></div>
+</div>
 </div>
 
 <style>
-.intro { margin-bottom: .9em; }
-.intro:first-child { margin-top: 22px; } /* clear the page badge */
-.intro h2 { margin-bottom: .5em; }
-.intro p { font-size: .84em; }
-.perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1em 0; margin-top: .8em; text-align: center; }
-.perks > div { display: flex; flex-direction: column; align-items: center; gap: .6em; }
-.perks svg { font-size: 2.3em; color: var(--c-brand); }
-.perks h3 { font-size: .95em; }
+.obc { gap: 2.2em; }
+.obc .intro { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1em; }
+.obc .intro .card { padding: 1.4em 1.5em; border-top: 4px solid var(--c-brand); }
+.obc .intro h2 { font-size: 1.3em; line-height: 1.2; margin-bottom: .6em; }
+.obc .intro p { font-size: .88em; }
+.obc .perks { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1em; text-align: center; }
+.obc .perks > div { display: flex; flex-direction: column; align-items: center; gap: .7em; }
+.obc .perks .bubble { font-size: 1.7em; }
+.obc .perks h3 { font-size: 1em; }
 </style>
 
 ---
 layout: page
 ---
 
+<div class="fill">
+
 # {{ t.timeline.title }}
 
-<Timeline :steps="t.timeline.steps">
+<Timeline class="tl-main" :steps="t.timeline.steps">
   <template #icon-0><tabler-file-check /></template>
   <template #icon-1><tabler-package /></template>
   <template #icon-2><tabler-plane-departure /></template>
@@ -110,97 +110,110 @@ layout: page
   <template #icon-4><tabler-user-check /></template>
 </Timeline>
 
+</div>
+
 <style>
-h1 { margin-top: 36px; }
+.tl-main { margin: 2.6em 0 1.5em; }
 </style>
 
 ---
 layout: page
 ---
 
-## {{ t.quote.beforeTitle }}
-
+<div class="fill quote">
+<h2 class="step"><span>1</span>{{ t.quote.beforeTitle }}</h2>
 <div class="grid3">
-<div v-for="c in t.quote.before" class="card">
-<h3>{{ c.title }}</h3>
-<ul><li v-for="x in c.items">{{ x }}</li></ul>
+  <Card :i="0" v-bind="t.quote.before[0]"><tabler-package /></Card>
+  <Card :i="1" v-bind="t.quote.before[1]"><tabler-route /></Card>
+  <Card :i="2" v-bind="t.quote.before[2]"><tabler-clock /></Card>
 </div>
-</div>
-
-## {{ t.quote.afterTitle }}
-
+<h2 class="step"><span>2</span>{{ t.quote.afterTitle }}</h2>
 <div class="grid3">
-<div v-for="c in t.quote.after" class="card">
-<h3>{{ c.title }}</h3>
-<ul><li v-for="x in c.items">{{ x }}</li></ul>
+  <Card :i="3" v-bind="t.quote.after[0]"><tabler-building-factory-2 /></Card>
+  <Card :i="4" v-bind="t.quote.after[1]"><tabler-files /></Card>
+  <Card :i="5" v-bind="t.quote.after[2]"><tabler-building-warehouse /></Card>
 </div>
 </div>
 
 <style>
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; margin: .8em 0 1.4em; font-size: .86em; }
+.quote h2 { font-size: 1.4em; }
+.quote .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; margin: .8em 0 1.5em; font-size: .86em; }
+.quote .grid3:last-child { margin-bottom: 0; }
 </style>
 
 ---
 layout: page
 ---
+
+<div class="fill customs">
 
 # {{ t.customs.title }}
 
 <h2 class="sub">{{ t.customs.docsTitle }}</h2>
-
 <div class="grid3">
-<div v-for="c in t.customs.docs" class="card">
-<h3>{{ c.title }}</h3>
-<ul><li v-for="x in c.items">{{ x }}</li></ul>
+  <Card :i="0" v-bind="t.customs.docs[0]"><tabler-file-invoice /></Card>
+  <Card :i="1" v-bind="t.customs.docs[1]"><tabler-file-certificate /></Card>
+  <Card :i="2" v-bind="t.customs.docs[2]"><tabler-id /></Card>
 </div>
+<div class="bottom">
+  <div>
+    <h2 class="sub">{{ t.customs.countriesTitle }}</h2>
+    <p class="countries">{{ t.customs.countriesText }}</p>
+    <div class="chips">
+      <span><circle-flags-mx />{{ t.customs.countries[0] }}</span>
+      <span><circle-flags-us />{{ t.customs.countries[1] }}</span>
+      <span><circle-flags-eu />{{ t.customs.countries[2] }}</span>
+      <span class="more"><tabler-world />{{ t.customs.countries[3] }}</span>
+    </div>
+  </div>
+  <div class="note"><tabler-info-circle /><p v-html="t.customs.note" /></div>
 </div>
 
-<h2 class="sub">{{ t.customs.countriesTitle }}</h2>
-
-<p class="countries" v-html="t.customs.countries" />
-
-<p class="note" v-html="t.customs.note" />
+</div>
 
 <style>
-h1 { font-size: 2.2em; margin-bottom: 14px; }
-.sub { font-size: 1.1em; }
-.sub, .grid3 h3 { font-weight: 700; } /* bold in the pptx on this slide only */
-.grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; margin: .7em 0 1.2em; font-size: .86em; }
-.countries { font-size: .88em; margin: .5em 0 .9em; }
-.note { font-size: .82em; }
+.customs h1 { font-size: 2.1em; margin-bottom: .45em; }
+.customs .sub { font: 700 1.05em var(--f-body); color: var(--c-brand); text-transform: uppercase; letter-spacing: .06em; }
+.customs .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9em; margin: .7em 0 1.4em; font-size: .86em; }
+.customs .bottom { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.6em; align-items: end; }
+.customs .countries { font-size: .86em; margin: .5em 0 .7em; }
+.customs .chips { display: flex; flex-wrap: wrap; gap: .45em; }
+.customs .chips span {
+  display: inline-flex; align-items: center; gap: .35em; padding: .3em .85em; border-radius: 999px;
+  background: var(--c-brand); color: #fff; font-size: .8em; font-weight: 600;
+}
+.customs .chips span:not(.more) { padding-left: .35em; }
+.customs .chips svg { font-size: 1.3em; }
+.customs .chips span:not(.more) svg { box-shadow: 0 0 0 1.5px rgba(255,255,255,.8); border-radius: 50%; }
+.customs .chips span.more { background: transparent; color: var(--c-brand); border: 1.5px solid var(--c-line); }
+.customs .note {
+  display: grid; grid-template-columns: auto 1fr; gap: .7em; align-items: start;
+  background: var(--c-card); border-left: 4px solid var(--c-tint); border-radius: 6px; padding: .9em 1.1em;
+  font-size: .82em;
+}
+.customs .note svg { color: var(--c-tint); font-size: 1.5em; }
 </style>
 
 ---
 layout: page
 ---
 
+<div class="fill services">
+
 # {{ t.services.title }}
 
-<div class="svc">
-<IconRow :i="0"><tabler-plane /></IconRow>
-<div>
-<h3>{{ t.services.items[0].title }}</h3>
-<ul><li v-for="x in t.services.items[0].items" v-html="x" /></ul>
+<div class="grid3">
+  <Card :i="0" big html v-bind="t.services.items[0]"><tabler-plane /></Card>
+  <Card :i="1" big html v-bind="t.services.items[1]"><tabler-plane-tilt /></Card>
+  <Card :i="2" big html v-bind="t.services.items[2]"><tabler-truck /></Card>
 </div>
-<IconRow :i="1"><tabler-plane-tilt /></IconRow>
-<div>
-<h3>{{ t.services.items[1].title }}</h3>
-<ul><li v-for="x in t.services.items[1].items" v-html="x" /></ul>
-</div>
-<IconRow :i="2"><tabler-truck /></IconRow>
-<div>
-<h3>{{ t.services.items[2].title }}</h3>
-<ul><li v-for="x in t.services.items[2].items" v-html="x" /></ul>
-</div>
+
 </div>
 
 <style>
-h1 { font-size: 2.2em; }
-.svc { display: grid; grid-template-columns: 3em 1fr; gap: 1.3em .6em; margin-top: 1.4em; font-size: .84em; }
-.svc h3 { font-size: 1.05em; margin-bottom: .3em; }
-.svc ul { margin: 0; padding-left: 1.1em; }
-.svc li { margin: .2em 0; line-height: 1.45; }
-.svc .row { grid-template-columns: 1fr; }
+.services h1 { font-size: 2em; }
+.services .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1em; margin-top: 1.4em; font-size: .86em; }
+.services .card { border-top: 4px solid var(--c-brand); }
 </style>
 
 ---
@@ -211,24 +224,30 @@ image: img/runway.jpg
 <h1 class="ind-title">{{ t.industries.title }}</h1>
 
 <div class="ind">
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 300, duration: 600 } }"><tabler-car /><span>{{ t.industries.items[0] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 410, duration: 600 } }"><tabler-rocket /><span>{{ t.industries.items[1] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><tabler-cpu /><span>{{ t.industries.items[2] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 630, duration: 600 } }"><tabler-heartbeat /><span>{{ t.industries.items[3] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 740, duration: 600 } }"><tabler-hanger /><span>{{ t.industries.items[4] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 850, duration: 600 } }"><tabler-file-text /><span>{{ t.industries.items[5] }}</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 300, duration: 600 } }"><span class="gl"><tabler-car /></span><span>{{ t.industries.items[0] }}</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 410, duration: 600 } }"><span class="gl"><tabler-rocket /></span><span>{{ t.industries.items[1] }}</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><span class="gl"><tabler-cpu /></span><span>{{ t.industries.items[2] }}</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 630, duration: 600 } }"><span class="gl"><tabler-heartbeat /></span><span>{{ t.industries.items[3] }}</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 740, duration: 600 } }"><span class="gl"><tabler-hanger /></span><span>{{ t.industries.items[4] }}</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 850, duration: 600 } }"><span class="gl"><tabler-file-text /></span><span>{{ t.industries.items[5] }}</span></div>
 </div>
 
 <style>
-.ind-title { font-size: 2.8em; margin: 70px 0 30px 16px; }
-.ind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6em 0; text-align: center; }
-.ind > div { display: flex; flex-direction: column; align-items: center; gap: .5em; }
-.ind svg { font-size: 2.6em; }
-.ind span { font: 500 1.15em var(--f-display); }
+.ind-title { font-size: 2.8em; margin: 60px 0 34px 16px; }
+.ind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.7em 0; text-align: center; }
+.ind > div { display: flex; flex-direction: column; align-items: center; gap: .6em; }
+.ind .gl {
+  width: 2.6em; height: 2.6em; border-radius: 50%; display: grid; place-items: center; font-size: 1.6em;
+  background: rgba(255,255,255,.14); border: 1.5px solid rgba(255,255,255,.45); backdrop-filter: blur(4px);
+}
+.ind span:last-child { font: 600 1.15em var(--f-body); letter-spacing: .01em; }
 </style>
 
 ---
-layout: page
+layout: split
+image: img/cover.jpg
+logo: img/sse-logo.svg
+side: left
 noBadge: true
 noFooter: true
 ---
@@ -238,14 +257,25 @@ import { brand, vcard } from './brand'
 </script>
 
 <div class="contacts">
-  <h2>{{ t.contacts.title }}</h2>
-  <Qr :value="vcard" :size="230" />
-  <a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a>
-  <a :href="`mailto:${brand.email}`">{{ brand.email }}</a>
+
+# {{ t.contacts.title }}
+
+<Qr :value="vcard" :size="150" />
+
+<ul class="lines">
+  <li><tabler-phone /><a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a></li>
+  <li><tabler-mail /><a :href="`mailto:${brand.email}`">{{ brand.email }}</a></li>
+  <li><tabler-world /><a :href="brand.url">{{ brand.site }}</a></li>
+  <li><tabler-map-pin /><span>{{ brand.address.street }}, {{ brand.address.zip }} {{ brand.address.city }}, {{ brand.address.country }}</span></li>
+</ul>
+
 </div>
 
 <style>
-.contacts { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.2em; }
-.contacts h2 { font-size: 1.6em; margin-bottom: .6em; }
-.contacts a { font: 500 1.15em var(--f-display); color: var(--c-brand); text-decoration: none; }
+.contacts { display: flex; flex-direction: column; gap: 1.3em; }
+.contacts h1 { font-size: 2.4em; }
+.contacts .lines { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: .7em; }
+.contacts .lines li { display: grid; grid-template-columns: 1.6em 1fr; align-items: center; gap: .5em; font-size: .98em; }
+.contacts .lines svg { color: var(--c-brand); font-size: 1.3em; }
+.contacts .lines a { color: var(--c-ink); text-decoration: none; font-weight: 600; }
 </style>
