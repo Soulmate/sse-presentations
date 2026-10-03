@@ -46,16 +46,19 @@ strong { color: var(--c-ink); font-weight: 700; }
 @keyframes kenburns { from { transform: scale(1.12); } to { transform: scale(1); } }
 
 /* ---------- Cards ---------- */
-.card { background: var(--c-card); border-radius: 6px; padding: 1.05em 1.3em; }
-.card h3 { margin-bottom: .55em; }
-.card h3 { display: flex; align-items: center; gap: .45em; }
-.card h3 svg { color: var(--c-brand); font-size: 1.25em; flex: none; }
+.card { background: var(--c-card); border-radius: 6px; padding: 1.05em 1.3em 1.05em .9em; }
+
+/* Hanging layout: a narrow gutter column (--gut) holds the title icon and the bullets, centred on one
+   vertical line; the title and the item text start together on the next line. */
+.card, .dots { --gut: 2.3em; }
+.card .head { display: grid; grid-template-columns: var(--gut) 1fr; align-items: center; margin-bottom: .5em; }
+.card .head > .ic { justify-self: center; display: grid; color: var(--c-brand); font-size: 1.3em; }
 
 /* Bullets: the Slidev reset hides list markers, so draw teal dots */
 .dots, .card ul { list-style: none; margin: 0; padding: 0; }
-.dots li, .card li { position: relative; padding-left: 1.05em; line-height: 1.45; margin: .3em 0; }
+.dots li, .card li { position: relative; padding-left: var(--gut); line-height: 1.45; margin: .3em 0; }
 .dots li::before, .card li::before {
-  content: ''; position: absolute; left: 0; top: .54em;
+  content: ''; position: absolute; left: calc(var(--gut) / 2 - .2em); top: .525em;
   width: .4em; height: .4em; border-radius: 50%; background: var(--c-tint);
 }
 

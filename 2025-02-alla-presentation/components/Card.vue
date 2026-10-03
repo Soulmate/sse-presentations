@@ -7,7 +7,8 @@ defineProps<{ title: string; items: string[]; html?: boolean; big?: boolean; i?:
 <template>
   <div class="card a-rise" :class="{ big }" :style="{ '--d': `${200 + (i ?? 0) * 110}ms` }">
     <div v-if="big" class="bubble a-pop" :style="{ '--d': `${350 + (i ?? 0) * 110}ms` }"><slot /></div>
-    <h3><slot v-if="!big" />{{ title }}</h3>
+    <div v-if="!big" class="head"><span class="ic"><slot /></span><h3>{{ title }}</h3></div>
+    <h3 v-else>{{ title }}</h3>
     <ul>
       <template v-for="x in items" :key="x">
         <li v-if="html" v-html="x" />
@@ -19,6 +20,9 @@ defineProps<{ title: string; items: string[]; html?: boolean; big?: boolean; i?:
 
 <style scoped>
 .big { padding: 1.4em 1.4em 1.3em; }
+/* big: bubble and title on the card edge, bullets hang from that edge */
+.big { --gut: 1.15em; }
+.big li::before { left: 0; }
 .big .bubble { font-size: 1.5em; background: var(--c-bg); margin-bottom: .55em; }
 .big h3 { font-size: 1.1em; margin-bottom: .6em; }
 .big li { margin: .55em 0; }
