@@ -6,6 +6,8 @@
     npm run export:es       # -> slides-es-export.pdf
     npm run build           # -> dist/ static site, all languages: open with ?lang=es
 
+Published with the other decks on GitHub Pages, see the README in the repo root.
+
 ## Where things live
 - slides.md          — slide order, layout and per-slide styles (no text)
 - locales/           — all texts: en.ts, es.ts; index.ts lists the languages

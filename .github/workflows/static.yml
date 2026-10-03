@@ -29,16 +29,9 @@ jobs:
           cache: npm
           cache-dependency-path: "**/package-lock.json"
 
-      - name: Build 2025-02-alla-presentation
-        working-directory: 2025-02-alla-presentation
-        run: |
-          npm ci
-          npx playwright install --with-deps chromium
-          OUT=../_site/2025-02-alla-presentation
-          npx slidev build --base /sse-presentations/2025-02-alla-presentation/ --out $OUT
-          # PDFs land next to the site: $OUT/slides-en.pdf, $OUT/slides-es.pdf
-          npx slidev export --output $OUT/slides-en.pdf
-          VITE_LANG=es npx slidev export --output $OUT/slides-es.pdf
+      # Every folder with slides.md: web build + PDF per language, plus _site/index.html
+      - name: Build all presentations
+        run: node scripts/build-site.mjs
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
