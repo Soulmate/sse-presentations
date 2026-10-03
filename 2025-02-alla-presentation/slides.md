@@ -78,10 +78,10 @@ With On Board Courier (OBC), a dedicated courier personally collects your urgent
 </div>
 
 <div class="perks">
-  <div v-click><tabler-run /><h3>Fast delivery</h3></div>
-  <div v-click><tabler-shield-lock /><h3>Secure handling</h3></div>
-  <div v-click><tabler-map-2 /><h3>Real-time tracking</h3></div>
-  <div v-click><tabler-mood-smile-beam /><h3>Maximum peace of mind</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 400, duration: 600 } }"><tabler-run /><h3>Fast delivery</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><tabler-shield-lock /><h3>Secure handling</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 640, duration: 600 } }"><tabler-map-2 /><h3>Real-time tracking</h3></div>
+  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 760, duration: 600 } }"><tabler-mood-smile-beam /><h3>Maximum peace of mind</h3></div>
 </div>
 
 <style>
@@ -89,7 +89,7 @@ With On Board Courier (OBC), a dedicated courier personally collects your urgent
 .intro h2 { margin-bottom: .5em; }
 .intro p { font-size: .84em; }
 .perks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.3em 0; margin-top: 1.1em; text-align: center; }
-.perks > div { display: flex; flex-direction: column; align-items: center; gap: .6em; transition: all .5s; }
+.perks > div { display: flex; flex-direction: column; align-items: center; gap: .6em; }
 .perks svg { font-size: 2.3em; color: var(--c-brand); }
 .perks h3 { font-size: .95em; }
 </style>
@@ -280,21 +280,20 @@ image: img/runway.jpg
 <h1 class="ind-title">Industries We Serve</h1>
 
 <div class="ind">
-  <div v-click><tabler-car /><span>Automotive</span></div>
-  <div v-click><tabler-rocket /><span>Aerospace</span></div>
-  <div v-click><tabler-cpu /><span>Electronics</span></div>
-  <div v-click><tabler-heartbeat /><span>Healthcare</span></div>
-  <div v-click><tabler-hanger /><span>Fashion</span></div>
-  <div v-click><tabler-file-text /><span>Documents</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 300, duration: 600 } }"><tabler-car /><span>Automotive</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 410, duration: 600 } }"><tabler-rocket /><span>Aerospace</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><tabler-cpu /><span>Electronics</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 630, duration: 600 } }"><tabler-heartbeat /><span>Healthcare</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 740, duration: 600 } }"><tabler-hanger /><span>Fashion</span></div>
+  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 850, duration: 600 } }"><tabler-file-text /><span>Documents</span></div>
 </div>
 
 <style>
 .ind-title { font-size: 2.8em; margin: 70px 0 30px 16px; }
 .ind { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6em 0; text-align: center; }
-.ind > div { display: flex; flex-direction: column; align-items: center; gap: .5em; transition: all .5s cubic-bezier(.2,.7,.2,1); }
+.ind > div { display: flex; flex-direction: column; align-items: center; gap: .5em; }
 .ind svg { font-size: 2.6em; }
 .ind span { font: 500 1.15em var(--f-display); }
-.ind > div.slidev-vclick-hidden { transform: translateY(16px) scale(.95); }
 </style>
 
 ---
@@ -304,12 +303,12 @@ noFooter: true
 ---
 
 <script setup>
-import { brand } from './brand'
+import { brand, vcard } from './brand'
 </script>
 
 <div class="contacts">
   <h2>Contacts</h2>
-  <Qr :value="brand.url" :size="230" />
+  <Qr :value="vcard" :size="230" />
   <a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a>
   <a :href="`mailto:${brand.email}`">{{ brand.email }}</a>
 </div>

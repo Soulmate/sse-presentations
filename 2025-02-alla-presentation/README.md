@@ -7,7 +7,7 @@
 
 ## Where things live
 - slides.md          — all text and slide order (this is what you translate / edit)
-- brand.ts           — email, site, phone, QR target
+- brand.ts           — email, site, phone, address; QR on the contacts slide is a vCard built from these
 - styles/main.css    — colors and fonts (tokens at the top); photo tint
 - public/img/sse-logo.svg — cover logo (set via `logo:` in the cover frontmatter)
 - layouts/           — cover, split (photo half), page, photo (full-bleed)
