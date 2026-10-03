@@ -1,12 +1,14 @@
 # SSE deck (Slidev)
 
     npm install
-    npx slidev              # live preview at http://localhost:3030, hot reload
-    npx slidev export       # -> slides-export.pdf
-    npx slidev build        # -> dist/ static site (GitHub Pages, Netlify, Cloudflare Pages)
+    npm run dev             # live preview at http://localhost:3030, hot reload (add ?lang=es for Spanish)
+    npm run export:en       # -> slides-en-export.pdf
+    npm run export:es       # -> slides-es-export.pdf
+    npm run build           # -> dist/ static site, all languages: open with ?lang=es
 
 ## Where things live
-- slides.md          — all text and slide order (this is what you translate / edit)
+- slides.md          — slide order, layout and per-slide styles (no text)
+- locales/           — all texts: en.ts, es.ts; index.ts lists the languages
 - brand.ts           — email, site, phone, address; QR on the contacts slide is a vCard built from these
 - styles/main.css    — colors and fonts (tokens at the top); photo tint
 - public/img/sse-logo.svg — cover logo (set via `logo:` in the cover frontmatter)
@@ -15,4 +17,9 @@
 - public/img/        — photos (any photo gets the teal tint automatically)
 
 Icons: any Tabler icon as <tabler-name />, see https://tabler.io/icons
-Translation: copy slides.md to slides.de.md, translate, run `npx slidev slides.de.md`.
+
+## Languages
+Language is picked by `?lang=xx` in the URL, else `VITE_LANG` at build/export time, else English.
+To add one: copy locales/es.ts to locales/de.ts, translate, register it in locales/index.ts,
+add an `export:de` script. If a translation runs long, tweak that slide with `:lang(de)` CSS
+(see `.list:lang(es)` on the Who We Are slide).

@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "slidev",
+    "build": "slidev build",
+    "export:en": "slidev export --output slides-en-export",
+    "export:es": "VITE_LANG=es slidev export --output slides-es-export"
   },
   "keywords": [],
   "author": "",

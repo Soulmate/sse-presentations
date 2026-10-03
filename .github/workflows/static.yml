@@ -1,0 +1,60 @@
+# Build Slidev presentations and deploy them to GitHub Pages
+name: Deploy presentations to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: "**/package-lock.json"
+
+      - name: Build 2025-02-alla-presentation
+        working-directory: 2025-02-alla-presentation
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          OUT=../_site/2025-02-alla-presentation
+          npx slidev build --base /sse-presentations/2025-02-alla-presentation/ --out $OUT
+          # PDFs land next to the site: $OUT/slides-en.pdf, $OUT/slides-es.pdf
+          npx slidev export --output $OUT/slides-en.pdf
+          VITE_LANG=es npx slidev export --output $OUT/slides-es.pdf
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
