@@ -5,9 +5,8 @@ defineProps<{ title: string; items: string[]; html?: boolean; big?: boolean; i?:
 </script>
 
 <template>
-  <div class="card" :class="{ big }" v-motion :initial="{ opacity: 0, y: 16 }"
-       :enter="{ opacity: 1, y: 0, transition: { delay: 200 + (i ?? 0) * 110, duration: 550 } }">
-    <div v-if="big" class="bubble"><slot /></div>
+  <div class="card a-rise" :class="{ big }" :style="{ '--d': `${200 + (i ?? 0) * 110}ms` }">
+    <div v-if="big" class="bubble a-pop" :style="{ '--d': `${350 + (i ?? 0) * 110}ms` }"><slot /></div>
     <h3><slot v-if="!big" />{{ title }}</h3>
     <ul>
       <template v-for="x in items" :key="x">

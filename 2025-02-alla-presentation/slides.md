@@ -61,24 +61,25 @@ side: right
 
 ---
 layout: page
+transition: nudge-left | nudge-right
 ---
 
 <div class="fill obc">
 <div class="intro">
-  <div class="card" v-motion :initial="{ opacity: 0, y: 16 }" :enter="{ opacity: 1, y: 0 }">
+  <div class="card a-rise" style="--d: 150ms">
     <h2>{{ t.obc.whatTitle }}</h2>
     <p>{{ t.obc.whatText }}</p>
   </div>
-  <div class="card" v-motion :initial="{ opacity: 0, y: 16 }" :enter="{ opacity: 1, y: 0, transition: { delay: 150 } }">
+  <div class="card a-rise" style="--d: 300ms">
     <h2>{{ t.obc.howTitle }}</h2>
     <p>{{ t.obc.howText }}</p>
   </div>
 </div>
 <div class="perks">
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 400, duration: 600 } }"><span class="bubble"><tabler-run /></span><h3>{{ t.obc.perks[0] }}</h3></div>
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><span class="bubble"><tabler-shield-lock /></span><h3>{{ t.obc.perks[1] }}</h3></div>
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 640, duration: 600 } }"><span class="bubble"><tabler-map-2 /></span><h3>{{ t.obc.perks[2] }}</h3></div>
-  <div v-motion :initial="{ opacity: 0, y: 20, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 760, duration: 600 } }"><span class="bubble"><tabler-mood-smile-beam /></span><h3>{{ t.obc.perks[3] }}</h3></div>
+  <div class="a-pop" style="--d: 650ms"><span class="bubble"><tabler-run /></span><h3>{{ t.obc.perks[0] }}</h3></div>
+  <div class="a-pop" style="--d: 770ms"><span class="bubble"><tabler-shield-lock /></span><h3>{{ t.obc.perks[1] }}</h3></div>
+  <div class="a-pop" style="--d: 890ms"><span class="bubble"><tabler-map-2 /></span><h3>{{ t.obc.perks[2] }}</h3></div>
+  <div class="a-pop" style="--d: 1010ms"><span class="bubble"><tabler-mood-smile-beam /></span><h3>{{ t.obc.perks[3] }}</h3></div>
 </div>
 </div>
 
@@ -96,6 +97,7 @@ layout: page
 
 ---
 layout: page
+transition: nudge-left | nudge-right
 ---
 
 <div class="fill">
@@ -118,6 +120,7 @@ layout: page
 
 ---
 layout: page
+transition: nudge-left | nudge-right
 ---
 
 <div class="fill quote">
@@ -127,7 +130,7 @@ layout: page
   <Card :i="1" v-bind="t.quote.before[1]"><tabler-route /></Card>
   <Card :i="2" v-bind="t.quote.before[2]"><tabler-clock /></Card>
 </div>
-<h2 class="step"><span>2</span>{{ t.quote.afterTitle }}</h2>
+<h2 class="step" style="--d: 450ms"><span>2</span>{{ t.quote.afterTitle }}</h2>
 <div class="grid3">
   <Card :i="3" v-bind="t.quote.after[0]"><tabler-building-factory-2 /></Card>
   <Card :i="4" v-bind="t.quote.after[1]"><tabler-files /></Card>
@@ -143,13 +146,14 @@ layout: page
 
 ---
 layout: page
+transition: nudge-left | nudge-right
 ---
 
 <div class="fill customs">
 
 # {{ t.customs.title }}
 
-<h2 class="sub">{{ t.customs.docsTitle }}</h2>
+<h2 class="sub a-rise" style="--d: 100ms">{{ t.customs.docsTitle }}</h2>
 <div class="grid3">
   <Card :i="0" v-bind="t.customs.docs[0]"><tabler-file-invoice /></Card>
   <Card :i="1" v-bind="t.customs.docs[1]"><tabler-file-certificate /></Card>
@@ -157,16 +161,16 @@ layout: page
 </div>
 <div class="bottom">
   <div>
-    <h2 class="sub">{{ t.customs.countriesTitle }}</h2>
-    <p class="countries">{{ t.customs.countriesText }}</p>
+    <h2 class="sub a-rise" style="--d: 600ms">{{ t.customs.countriesTitle }}</h2>
+    <p class="countries a-rise" style="--d: 680ms">{{ t.customs.countriesText }}</p>
     <div class="chips">
-      <span><circle-flags-mx />{{ t.customs.countries[0] }}</span>
-      <span><circle-flags-us />{{ t.customs.countries[1] }}</span>
-      <span><circle-flags-eu />{{ t.customs.countries[2] }}</span>
-      <span class="more"><tabler-world />{{ t.customs.countries[3] }}</span>
+      <span class="a-pop" style="--d: 800ms"><circle-flags-mx />{{ t.customs.countries[0] }}</span>
+      <span class="a-pop" style="--d: 890ms"><circle-flags-us />{{ t.customs.countries[1] }}</span>
+      <span class="a-pop" style="--d: 980ms"><circle-flags-eu />{{ t.customs.countries[2] }}</span>
+      <span class="more a-pop" style="--d: 1070ms"><tabler-world />{{ t.customs.countries[3] }}</span>
     </div>
   </div>
-  <div class="note"><tabler-info-circle /><p v-html="t.customs.note" /></div>
+  <div class="note a-right" style="--d: 900ms"><tabler-info-circle /><p v-html="t.customs.note" /></div>
 </div>
 
 </div>
@@ -224,12 +228,12 @@ image: img/runway.jpg
 <h1 class="ind-title">{{ t.industries.title }}</h1>
 
 <div class="ind">
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 300, duration: 600 } }"><span class="gl"><tabler-car /></span><span>{{ t.industries.items[0] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 410, duration: 600 } }"><span class="gl"><tabler-rocket /></span><span>{{ t.industries.items[1] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 520, duration: 600 } }"><span class="gl"><tabler-cpu /></span><span>{{ t.industries.items[2] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 630, duration: 600 } }"><span class="gl"><tabler-heartbeat /></span><span>{{ t.industries.items[3] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 740, duration: 600 } }"><span class="gl"><tabler-hanger /></span><span>{{ t.industries.items[4] }}</span></div>
-  <div v-motion :initial="{ opacity: 0, y: 24, scale: .85 }" :enter="{ opacity: 1, y: 0, scale: 1, transition: { delay: 850, duration: 600 } }"><span class="gl"><tabler-file-text /></span><span>{{ t.industries.items[5] }}</span></div>
+  <div class="a-pop" style="--d: 400ms"><span class="gl"><tabler-car /></span><span>{{ t.industries.items[0] }}</span></div>
+  <div class="a-pop" style="--d: 510ms"><span class="gl"><tabler-rocket /></span><span>{{ t.industries.items[1] }}</span></div>
+  <div class="a-pop" style="--d: 620ms"><span class="gl"><tabler-cpu /></span><span>{{ t.industries.items[2] }}</span></div>
+  <div class="a-pop" style="--d: 730ms"><span class="gl"><tabler-heartbeat /></span><span>{{ t.industries.items[3] }}</span></div>
+  <div class="a-pop" style="--d: 840ms"><span class="gl"><tabler-hanger /></span><span>{{ t.industries.items[4] }}</span></div>
+  <div class="a-pop" style="--d: 950ms"><span class="gl"><tabler-file-text /></span><span>{{ t.industries.items[5] }}</span></div>
 </div>
 
 <style>
@@ -260,13 +264,13 @@ import { brand, vcard } from './brand'
 
 # {{ t.contacts.title }}
 
-<Qr :value="vcard" :size="150" />
+<Qr class="a-pop" style="--d: 250ms" :value="vcard" :size="150" />
 
 <ul class="lines">
-  <li><tabler-phone /><a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a></li>
-  <li><tabler-mail /><a :href="`mailto:${brand.email}`">{{ brand.email }}</a></li>
-  <li><tabler-world /><a :href="brand.url">{{ brand.site }}</a></li>
-  <li><tabler-map-pin /><span>{{ brand.address.street }}, {{ brand.address.zip }} {{ brand.address.city }}, {{ brand.address.country }}</span></li>
+  <li class="a-left" style="--d: 450ms"><tabler-phone /><a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a></li>
+  <li class="a-left" style="--d: 560ms"><tabler-mail /><a :href="`mailto:${brand.email}`">{{ brand.email }}</a></li>
+  <li class="a-left" style="--d: 670ms"><tabler-world /><a :href="brand.url">{{ brand.site }}</a></li>
+  <li class="a-left" style="--d: 780ms"><tabler-map-pin /><span>{{ brand.address.street }}, {{ brand.address.zip }} {{ brand.address.city }}, {{ brand.address.country }}</span></li>
 </ul>
 
 </div>

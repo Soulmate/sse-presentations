@@ -77,7 +77,36 @@ h2.step > span {
 
 .icon { color: var(--c-brand); }
 
-/* PDF export: show final state of every animation */
+/* ---------- Motion ----------
+   Entrance classes; delay per element with style="--d: 300ms".
+   Slidev only hides inactive slides (v-show), so these replay every time a slide is shown. */
+:root { --ease: cubic-bezier(.2,.7,.2,1); }
+.a-rise  { animation: a-rise .6s var(--ease) var(--d, 0ms) both; }
+.a-left  { animation: a-left .55s var(--ease) var(--d, 0ms) both; }
+.a-right { animation: a-right .6s var(--ease) var(--d, 0ms) both; }
+.a-pop   { animation: a-pop .6s cubic-bezier(.3,1.4,.5,1) var(--d, 0ms) both; }
+@keyframes a-rise  { from { opacity: 0; transform: translateY(16px); } }
+@keyframes a-left  { from { opacity: 0; transform: translateX(-24px); } }
+@keyframes a-right { from { opacity: 0; transform: translateX(24px); } }
+@keyframes a-pop   { from { opacity: 0; transform: scale(.6); } }
+
+/* Every slide title rises in first; numbered headings pop their number */
+.slidev-layout h1, .slidev-layout h2.step { animation: a-rise .7s var(--ease) var(--d, 0ms) both; }
+.slidev-layout h2.step > span { animation: a-pop .55s cubic-bezier(.3,1.4,.5,1) calc(var(--d, 0ms) + 150ms) both; }
+
+/* Slide transition between plain pages: fade with a small sideways shift (photo slides keep fade-out) */
+.nudge-left-enter-active, .nudge-left-leave-active,
+.nudge-right-enter-active, .nudge-right-leave-active { transition: opacity .45s ease, transform .5s var(--ease); }
+.nudge-left-enter-from  { opacity: 0; transform: translateX(48px); }
+.nudge-left-leave-to    { opacity: 0; transform: translateX(-48px); }
+.nudge-right-enter-from { opacity: 0; transform: translateX(-48px); }
+.nudge-right-leave-to   { opacity: 0; transform: translateX(48px); }
+
+/* PDF/PNG export (html.print) and "reduce motion": no animation, final state at once */
+html.print .slidev-layout *, html.print .slidev-layout { animation: none !important; transition: none !important; }
 @media print {
-  .photo.kenburns > img { animation: none; }
+  .slidev-layout *, .slidev-layout { animation: none !important; transition: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slidev-layout *, .slidev-layout, [class*="nudge-"] { animation: none !important; transition: none !important; }
 }

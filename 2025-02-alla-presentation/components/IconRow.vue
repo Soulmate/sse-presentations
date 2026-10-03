@@ -4,8 +4,7 @@ defineProps<{ title?: string; text?: string; i?: number }>()
 </script>
 
 <template>
-  <div class="row" v-motion :initial="{ opacity: 0, x: -24 }"
-       :enter="{ opacity: 1, x: 0, transition: { delay: 250 + (i ?? 0) * 110, duration: 550 } }">
+  <div class="row a-left" :style="{ '--d': `${250 + (i ?? 0) * 110}ms` }">
     <div class="ic"><slot /></div>
     <div>
       <h3 v-if="title">{{ title }}</h3>
