@@ -279,6 +279,7 @@ photoWidth: 66.667%
 .refs-text .lead { font-size: 1.05em; line-height: 1.4; color: var(--c-tint); margin-top: -.6em; }
 .refs-text .list { display: flex; flex-direction: column; gap: 1.3em; margin-top: .6em; }
 .refs-text:lang(es) { gap: 1.1em; }
+.refs-text:lang(es) h1 { font-size: 1.75em; white-space: nowrap; }
 .refs-text:lang(es) .list { gap: 1em; margin-top: .3em; } /* longer Spanish text */
 .logos {
   position: absolute; z-index: 5; top: 50%; left: calc(33.333% + 2em); right: 2em; translate: 0 -50%;
