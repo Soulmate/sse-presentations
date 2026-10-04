@@ -4,7 +4,7 @@ defineProps<{ image: string }>()
 </script>
 
 <template>
-  <div class="slidev-layout photo kenburns">
+  <div class="slidev-layout photo">
     <img :src="image" alt="" />
     <div class="pad over"><slot /></div>
     <Chrome dark />

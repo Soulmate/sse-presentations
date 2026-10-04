@@ -31,4 +31,5 @@ h3 { font-size: 18.7px; line-height: 23.8px; max-width: 122px; margin: 14.5px 0 
 .w { white-space: nowrap; }
 p { font-size: 14.9px; line-height: 24.7px; max-width: 133px; }
 .step:last-child p { max-width: 115px; } /* the last text box is narrower in the pptx */
+:lang(es) .step:last-child p { max-width: 133px; } /* but not in the Spanish one */
 </style>

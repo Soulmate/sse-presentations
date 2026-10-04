@@ -7,7 +7,7 @@ withDefaults(defineProps<{ image: string; side?: 'left' | 'right'; photoWidth?: 
 
 <template>
   <div class="slidev-layout split" :class="side" :style="{ '--photo': photoWidth }">
-    <div class="photo kenburns">
+    <div class="photo">
       <img :src="image" alt="" :style="{ objectPosition: photoPos }" />
       <img v-if="logo" class="logo" :src="logo" alt="SSE" />
       <div v-if="$slots.photo" class="over"><slot name="photo" /></div>
@@ -30,9 +30,7 @@ withDefaults(defineProps<{ image: string; side?: 'left' | 'right'; photoWidth?: 
 .photo > img.logo {
   inset: 0; margin: auto; z-index: 2; width: 62%; height: auto; object-fit: contain;
   filter: drop-shadow(0 6px 40px rgba(0,0,0,.25));
-  animation: rise 1.4s cubic-bezier(.2,.7,.2,1) .2s both;
 }
-@keyframes rise { from { opacity: 0; transform: scale(1.15); filter: blur(8px); } }
 </style>
 <style scoped>
 .split.left :deep(.footer) { left: var(--photo); }

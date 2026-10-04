@@ -1,20 +1,20 @@
-// Spanish texts: sources/marketing materials_spanish translation.docx plus the reviewer's corrections.
+// Spanish texts: as in Sources/Alla-pres-v9-es.pptx.
 import type { Messages } from './en'
 
 const es: Messages = {
   who: {
     title: 'Quiénes somos',
     rows: [
-      { title: 'Fundada en 2020', text: 'Somos un equipo con más de una década de experiencia combinada en logística de tiempo crítico' },
+      { title: 'Fundada en 2020', text: 'Más de una década de experiencia en logística de tiempo crítico' },
       { title: 'Equipo principal', text: 'Más de 10 años trabajando juntos' },
       { title: 'Especializados en envíos urgentes', text: 'Soluciones OBC, NFO y transporte terrestre exprés' },
       { title: 'Enfoque flexible', text: 'Nos adaptamos a las necesidades reales de cada envío' },
-      { title: 'Más de 1.000 couriers y colaboradores en todo el mundo', text: 'Trabajamos exclusivamente con una red de colaboradores confiables cuidadosamente seleccionados' },
+      { title: 'Más de 1.000 couriers y colaboradores en todo el mundo', text: 'Pero trabajamos únicamente con una red de confianza cuidadosamente seleccionada' },
       { title: 'Calidad sobre cantidad', text: 'Nos enfocamos en la precisión, la fiabilidad y las relaciones a largo plazo' },
     ],
   },
   how: {
-    title: '¿Cómo trabajamos?',
+    title: 'Cómo trabajamos',
     rows: [
       'Operamos 24/7 con cobertura global y respuesta rápida',
       'Cotizaciones OBC estándar en 15\u00a0min y NFO en 30\u00a0min',
@@ -28,7 +28,7 @@ const es: Messages = {
     whatTitle: '¿Qué es OBC (On Board Courier)?',
     whatText: 'OBC significa On Board Courier, un servicio premium en el que un courier dedicado acompaña personalmente su envío urgente de principio a fin, garantizando una entrega rápida y segura sin separarse nunca del paquete.',
     howTitle: '¿Cómo funciona OBC?',
-    howText: 'Con el servicio On Board Courier (OBC), un courier dedicado recoge personalmente su envío urgente, lo lleva consigo a bordo del avión y lo entrega en mano directamente en el destino. Este proceso garantiza máxima seguridad, rapidez y seguimiento en tiempo real para sus envíos críticos.',
+    howText: 'Con el servicio On Board Courier (OBC), un courier dedicado recoge personalmente su envío urgente, lo lleva consigo a bordo del avión y lo entrega en mano directamente en el destino.\nEste proceso garantiza máxima seguridad, rapidez y seguimiento en tiempo real para sus envíos críticos.',
     perks: ['Entrega rápida', 'Manipulación segura', 'Seguimiento en tiempo real', 'Máxima tranquilidad'],
   },
   timeline: {
@@ -61,11 +61,11 @@ const es: Messages = {
     docs: [
       { title: 'Documentos principales', items: ['Factura comercial', 'Lista de empaque', 'Certificado de origen', 'Código HS'] },
       { title: 'Documentos adicionales', items: ['Permisos de exportación o importación', 'Poder notarial (POA) para el despacho de aduanas'] },
-      { title: 'Documentos del courier', items: ['Pasaporte', 'Boletos de avión'] },
+      { title: 'Documentos del courier', items: ['Pasaporte', 'Billetes de avión'] },
     ],
     countriesTitle: 'Países disponibles',
     countriesText: 'Ofrecemos servicios de despacho de aduanas en una amplia variedad de países en todo el mundo, incluyendo:',
-    countries: ['México', 'Estados Unidos', 'Unión Europea', 'Y muchos más'],
+    countries: ['México', 'Estados Unidos', 'Europa', 'Y muchos más'],
     note: '<strong>Nota:</strong> Los procedimientos aduaneros varían según el país y el aeropuerto. Contáctenos para conocer los requisitos específicos de cada país y recibir asistencia personalizada.',
   },
   services: {
@@ -87,7 +87,7 @@ const es: Messages = {
   },
   industries: {
     title: 'Industrias que atendemos',
-    items: ['Automotriz', 'Aeroespacial', 'Electrónica', 'Salud', 'Moda', 'Documentos'],
+    items: ['Automoción', 'Aeroespacial', 'Electrónica', 'Salud', 'Moda', 'Documentos'],
   },
   references: {
     title: 'Nuestras referencias',

@@ -4,7 +4,6 @@ title: SSE Logistics
 info: Company presentation
 aspectRatio: 16/9
 canvasWidth: 980
-transition: fade-out
 fonts:
   provider: none
 routerMode: hash
@@ -38,10 +37,11 @@ side: left
 
 <style>
 /* Top-aligned, positions and sizes taken from the pptx */
-.who { margin: -14px 0 auto -3px; --ic-col: 29px; --ic-gap: 12px; --ic-size: 1.44em; --row-title: 14.4px; --row-title-gap: 2px; --row-text: 12.9px; }
+.who { margin: -14px 0 auto -3px; --ic-col: 29px; --ic-gap: 12px; --ic-size: 1.44em; --row-title: 14.4px; --row-title-gap: 6px; --row-text: 11px; }
 .who h1 { margin: 0 0 23.5px 14px; }
 .who .list { display: flex; flex-direction: column; gap: 24.9px; }
-.who .list:lang(es) { gap: 19px; } /* longer Spanish text */
+/* Spanish: move the photo/text border left so the longer rows fit (inline --photo needs !important) */
+:lang(es) .split.left { --photo: 46% !important; }
 </style>
 
 ---
@@ -76,7 +76,6 @@ side: right
 
 ---
 layout: page
-transition: nudge-left | nudge-right
 ---
 
 <div class="obc">
@@ -102,7 +101,10 @@ transition: nudge-left | nudge-right
 .obc .card { height: 107.4px; box-sizing: border-box; padding: 13.2px 6px 0 13px; border-radius: 3px; }
 .obc .card + .card { margin-top: 12.6px; }
 .obc .card h2 { font-size: 26.2px; line-height: 1.2; color: var(--c-ink); margin-bottom: 9px; }
-.obc .card p { font-size: 12.9px; line-height: 21.8px; }
+.obc .card p { font-size: 12.9px; line-height: 21.8px; white-space: pre-line; } /* \n in the text = line break */
+/* Spanish: the second card is taller and the perks sit lower, as in the Spanish pptx */
+:lang(es) .obc .card + .card { height: 122px; }
+:lang(es) .obc .perks { margin-top: 14.9px; }
 .obc .perks { display: grid; grid-template-columns: repeat(2, 447px); justify-content: center; row-gap: 35.3px; margin-top: 14.2px; text-align: center; }
 .obc .perks > div { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .obc .perks img { width: 32.3px; height: 32.3px; }
@@ -111,7 +113,6 @@ transition: nudge-left | nudge-right
 
 ---
 layout: page
-transition: nudge-left | nudge-right
 ---
 
 <div class="mission">
@@ -138,7 +139,6 @@ transition: nudge-left | nudge-right
 
 ---
 layout: page
-transition: nudge-left | nudge-right
 ---
 
 <div class="quote selectable">
@@ -162,11 +162,11 @@ transition: nudge-left | nudge-right
 .quote h2 { font-size: 22.85px; line-height: 1.2; margin-bottom: 18px; }
 .quote h2 + .boxes + h2 { margin: 23.1px 0 22.3px; }
 .quote .box { height: 175px; }
+:lang(es) .quote .boxes:last-child .box { height: 187px; } /* Spanish: two-line last item in Documentos */
 </style>
 
 ---
 layout: page
-transition: nudge-left | nudge-right
 ---
 
 <div class="customs">
@@ -249,6 +249,8 @@ layout: page
 /* Three sections, icon on the left; positions and sizes taken from the pptx */
 .services { margin: 0 9.5px; }
 .services h1 { font-size: 38.26px; margin: 9.2px 0 0; }
+:lang(es) .services h1 { font-size: 31.44px; margin: 15.3px 0 0; } /* longer Spanish title, one line as in the Spanish pptx */
+:lang(es) .services .svc:first-of-type { margin-top: 31px; }
 .services .svc { display: grid; grid-template-columns: 38.7px 1fr; column-gap: 14.3px; height: 155.9px; }
 .services .svc:first-of-type { margin-top: 29px; }
 .services .svc img { width: 38.7px; height: 38.7px; }
@@ -278,6 +280,7 @@ image: img/runway.jpg
 <style>
 /* Title and a 3x2 grid of icons; positions and sizes taken from the pptx */
 .industries h1 { font-size: 38.7px; margin: 116.1px 0 0 32.1px; }
+:lang(es) .industries h1 { width: 892.65px; margin-left: 22.6px; text-align: center; } /* Spanish: centred over the icon grid */
 .industries .ind { display: grid; grid-template-columns: repeat(3, 297.55px); row-gap: 31px; margin: 26.3px 0 0 22.6px; text-align: center; }
 .industries .ind > div { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .industries .ind img { width: 38px; height: 38px; }
@@ -376,11 +379,7 @@ import { brand, mapsUrl } from './brand'
 </div>
 
 <style>
-/* Photo side: gradient instead of the flat tint, small logo top-left, big two-line title and lead */
-.split.left :deep(.photo)::after {
-  background: linear-gradient(90deg, rgba(13,53,80,.82) 0%, rgba(13,53,80,.5) 45%, rgba(13,53,80,.08) 100%);
-  opacity: 1;
-}
+/* Photo side (usual tint of the split layout): small logo top-left, big two-line title and lead */
 .connect { position: absolute; inset: 0; padding: 48px 56px; display: flex; flex-direction: column; }
 .connect .logo { width: 112px; height: auto; }
 .connect h1 { font-size: 66px; line-height: 1.02; max-width: 300px; margin-top: 96px; } /* wraps to two lines */
