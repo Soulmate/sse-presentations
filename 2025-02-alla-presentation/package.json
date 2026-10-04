@@ -8,7 +8,8 @@
     "build": "slidev build",
     "export:en": "slidev export --output slides-en-export",
     "export:es": "VITE_LANG=es slidev export --output slides-es-export",
-    "compare": "bash scripts/compare.sh"
+    "compare": "bash scripts/compare.sh",
+    "compare:es": "DECK_LANG=es bash scripts/compare.sh"
   },
   "keywords": [],
   "author": "",

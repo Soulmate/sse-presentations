@@ -2,13 +2,15 @@
 # Render the reference PDF and the current deck (English) side by side into Sources/compare:
 #   NN-ref.png (from Sources/Alla-pres-v9.pdf, slide 10 from a photo mock-up) and NN-new.png (from the deck),
 #   both 2400px wide.
-# Usage: npm run compare [-- <range>]   e.g. npm run compare -- 2-4   (default: all slides)
+# Usage: npm run compare [-- <range>]      e.g. npm run compare -- 2-4   (default: all slides)
+#        npm run compare:es [-- <range>]   the Spanish deck against Alla-pres-v9-es.pdf, into Sources/compare-es
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-REF=Sources/Alla-pres-v9.pdf
-PHOTO10=Sources/photo_2026-10-04_20-58-01.jpg
-OUT=Sources/compare
+DECK_LANG=${DECK_LANG:-en}
+if [ "$DECK_LANG" = en ]; then REF=Sources/Alla-pres-v9.pdf; OUT=Sources/compare
+else REF=Sources/Alla-pres-v9-$DECK_LANG.pdf; OUT=Sources/compare-$DECK_LANG; fi
+PHOTO10=Sources/photo_2026-10-04_20-58-01.jpg  # no per-language mock-up for slide 10
 RANGE=${1:-}
 TMP=$(mktemp -d)
 trap 'rm -rf "$TMP"' EXIT
@@ -35,7 +37,7 @@ for n in slides:
 PY
 
 # Deck: canvas is 980px wide, so scale 2400/980 gives the same size as the reference
-npx slidev export --format png --scale 2.449 --output "$TMP" ${RANGE:+--range "$RANGE"} >/dev/null
+VITE_LANG=$DECK_LANG npx slidev export --format png --scale 2.449 --output "$TMP" ${RANGE:+--range "$RANGE"} >/dev/null
 for f in "$TMP"/*.png; do
   n=$(basename "$f" .png); n=$((10#$n))
   mv "$f" "$(printf '%s/%02d-new.png' "$OUT" "$n")"
