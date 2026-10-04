@@ -1,20 +1,20 @@
-// Spanish texts: as in Sources/Alla-pres-v9-es.pptx.
+// Spanish texts: as in Sources/Alla-pres-v9-es.pptx, plus the reviewer's comments (Spanish Flyer & BP - Comments), applied verbatim.
 import type { Messages } from './en'
 
 const es: Messages = {
   who: {
     title: 'Quiénes somos',
     rows: [
-      { title: 'Fundada en 2020', text: 'Más de una década de experiencia en logística de tiempo crítico' },
+      { title: 'Fundada en 2020', text: 'Somos un Equipo con más de una Década de Experiencia Combinada en Logística de Tiempo Crítico' },
       { title: 'Equipo principal', text: 'Más de 10 años trabajando juntos' },
       { title: 'Especializados en envíos urgentes', text: 'Soluciones OBC, NFO y transporte terrestre exprés' },
       { title: 'Enfoque flexible', text: 'Nos adaptamos a las necesidades reales de cada envío' },
-      { title: 'Más de 1.000 couriers y colaboradores en todo el mundo', text: 'Pero trabajamos únicamente con una red de confianza cuidadosamente seleccionada' },
+      { title: 'Más de 1.000 couriers y colaboradores en todo el mundo', text: 'Trabajamos exclusivamente con una red de colaboradores confiables cuidadosamente seleccionados' },
       { title: 'Calidad sobre cantidad', text: 'Nos enfocamos en la precisión, la fiabilidad y las relaciones a largo plazo' },
     ],
   },
   how: {
-    title: 'Cómo trabajamos',
+    title: '¿Cómo trabajamos?',
     rows: [
       'Operamos 24/7 con cobertura global y respuesta rápida',
       'Cotizaciones OBC estándar en 15\u00a0min y NFO en 30\u00a0min',
@@ -61,7 +61,7 @@ const es: Messages = {
     docs: [
       { title: 'Documentos principales', items: ['Factura comercial', 'Lista de empaque', 'Certificado de origen', 'Código HS'] },
       { title: 'Documentos adicionales', items: ['Permisos de exportación o importación', 'Poder notarial (POA) para el despacho de aduanas'] },
-      { title: 'Documentos del courier', items: ['Pasaporte', 'Billetes de avión'] },
+      { title: 'Documentos del courier', items: ['Pasaporte', 'Boletos de avión'] },
     ],
     countriesTitle: 'Países disponibles',
     countriesText: 'Ofrecemos servicios de despacho de aduanas en una amplia variedad de países en todo el mundo, incluyendo:',
@@ -87,7 +87,7 @@ const es: Messages = {
   },
   industries: {
     title: 'Industrias que atendemos',
-    items: ['Automoción', 'Aeroespacial', 'Electrónica', 'Salud', 'Moda', 'Documentos'],
+    items: ['Automotríz', 'Aeroespacial', 'Electrónica', 'Salud', 'Moda', 'Documentos'],
   },
   references: {
     title: 'Nuestras referencias',

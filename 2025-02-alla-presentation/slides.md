@@ -42,6 +42,7 @@ side: left
 .who .list { display: flex; flex-direction: column; gap: 24.9px; }
 /* Spanish: move the photo/text border left so the longer rows fit (inline --photo needs !important) */
 :lang(es) .split.left { --photo: 46% !important; }
+:lang(es) .who .list { gap: 17px; } /* two Spanish descriptions wrap to a second line */
 </style>
 
 ---
