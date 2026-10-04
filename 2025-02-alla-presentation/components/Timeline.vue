@@ -1,44 +1,34 @@
 <script setup lang="ts">
-// Horizontal process timeline. A progress line runs left to right; each step pops in as the line reaches it.
-const props = defineProps<{ steps: { title: string; text: string }[] }>()
-const START = 250 // ms before the line starts
-const RUN = 1700 // ms for the line to cross the whole timeline
-// when the line passes the centre of step i
-const at = (i: number) => START + RUN * (i + 0.5) / props.steps.length
+// Horizontal process timeline: a grey line through square icon tiles, with a short drop line to each step's text.
+// Geometry follows the pptx. `i` staggers the entrance.
+defineProps<{ steps: { title: string; text: string }[] }>()
 </script>
 
 <template>
-  <div class="tl" :style="{ '--start': `${START}ms`, '--run': `${RUN}ms` }">
-    <div class="track"><div class="fill" /></div>
+  <div class="tl">
+    <div class="track" />
     <div v-for="(s, i) in steps" :key="i" class="step">
-      <div class="node a-pop" :style="{ '--d': `${at(i) - 120}ms` }">
-        <slot :name="`icon-${i}`" /><span class="num">{{ i + 1 }}</span>
-      </div>
-      <h3 class="a-rise" :style="{ '--d': `${at(i) + 80}ms` }">{{ s.title }}</h3>
-      <p class="a-rise" :style="{ '--d': `${at(i) + 180}ms` }">{{ s.text }}</p>
+      <div class="node a-pop" :style="{ '--d': `${250 + i * 140}ms` }"><slot :name="`icon-${i}`" /></div>
+      <div class="drop" />
+      <!-- words never break inside (e.g. at the hyphen of "Pick-Up") -->
+      <h3 class="a-rise" :style="{ '--d': `${330 + i * 140}ms` }"><template v-for="(w, j) in s.title.split(' ')" :key="j">{{ j ? ' ' : '' }}<span class="w">{{ w }}</span></template></h3>
+      <p class="a-rise" :style="{ '--d': `${400 + i * 140}ms` }">{{ s.text }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.tl { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 1.4em; }
-.track { position: absolute; left: 0; right: 0; top: 31px; height: 2px; background: var(--c-line); }
-.fill {
-  height: 100%; background: var(--c-tint); transform-origin: left;
-  animation: draw var(--run) linear var(--start) both;
-}
-@keyframes draw { from { transform: scaleX(0); } }
+.tl { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 177.75px; }
+.track { position: absolute; left: 7.6px; right: 7.6px; top: 22.9px; height: 2.1px; background: var(--c-line); }
 .step { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .node {
-  position: relative; z-index: 1; width: 64px; height: 64px; border-radius: 50%;
-  background: var(--c-brand); color: #fff; font-size: 1.75em; display: grid; place-items: center;
-  box-shadow: 0 0 0 7px var(--c-bg);
+  position: relative; z-index: 1; width: 47.9px; height: 45.9px; border-radius: 3px;
+  background: var(--c-card); color: #325f7b; font-size: 29px; display: grid; place-items: center;
 }
-.num {
-  position: absolute; top: -4px; right: -6px; width: 24px; height: 24px; border-radius: 50%;
-  background: var(--c-tint); color: #fff; border: 2px solid var(--c-bg);
-  font: 700 12px/20px var(--f-body); text-align: center;
-}
-h3 { font-size: 1.05em; line-height: 1.3; margin: 1.3em 0 .55em; min-height: 2.6em; display: flex; align-items: center; justify-content: center; }
-p { font-size: .84em; line-height: 1.55; }
+.node :deep([stroke-width="2"]), .node :deep([stroke-width="1.5"]) { stroke-width: 1.33; }
+.drop { width: 2.1px; height: 30.2px; background: var(--c-line); }
+h3 { font-size: 18.7px; line-height: 23.8px; max-width: 122px; margin: 14.5px 0 12.7px; }
+.w { white-space: nowrap; }
+p { font-size: 14.9px; line-height: 24.7px; max-width: 133px; }
+.step:last-child p { max-width: 115px; } /* the last text box is narrower in the pptx */
 </style>

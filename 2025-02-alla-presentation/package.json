@@ -7,7 +7,8 @@
     "dev": "slidev",
     "build": "slidev build",
     "export:en": "slidev export --output slides-en-export",
-    "export:es": "VITE_LANG=es slidev export --output slides-es-export"
+    "export:es": "VITE_LANG=es slidev export --output slides-es-export",
+    "compare": "bash scripts/compare.sh"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "@fontsource/museomoderno": "^5.0.0",
     "@fontsource/source-sans-3": "^5.3.0",
     "@iconify-json/circle-flags": "^1.2.12",
+    "@iconify-json/streamline-ultimate": "^1.2.2",
     "@iconify-json/tabler": "^1.2.41",
     "@slidev/cli": "^53.0.0",
     "@slidev/theme-default": "^0.25.0",

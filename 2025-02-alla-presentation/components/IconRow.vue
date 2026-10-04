@@ -14,9 +14,9 @@ defineProps<{ title?: string; text?: string; i?: number }>()
 </template>
 
 <style scoped>
-.row { display: grid; grid-template-columns: 2.4em 1fr; gap: .9em; align-items: start; }
-.ic { color: var(--c-brand); font-size: 1.85em; line-height: 1; display: grid; place-items: center; }
-h3 { font-size: 1em; margin: .2em 0 .3em; }
-p { font-size: .82em; }
-p.solo { font-size: .98em; padding-top: .3em; }
+.row { display: grid; grid-template-columns: var(--ic-col, 2.4em) 1fr; gap: var(--ic-gap, .9em); align-items: start; }
+.ic { color: var(--c-brand); font-size: var(--ic-size, 1.85em); line-height: 1; display: grid; place-items: center; }
+h3 { font-size: var(--row-title, 1em); margin: .2em 0 var(--row-title-gap, .3em); }
+p { font-size: var(--row-text, .82em); }
+p.solo { font-size: var(--row-text, .98em); padding-top: var(--row-solo-pad, .3em); }
 </style>

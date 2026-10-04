@@ -7,22 +7,21 @@ defineProps<{ dark?: boolean; noFooter?: boolean; noBadge?: boolean }>()
 <template>
   <div v-if="!noBadge" class="badge" :class="{ dark }">{{ $page - 1 }}</div>
   <div v-if="!noFooter" class="footer" :class="{ dark }">
-    <span class="selectable">{{ brand.email }} — {{ brand.site }}</span>
+    <span class="selectable">{{ brand.email }}&ensp;—&ensp;{{ brand.site }}</span>
   </div>
 </template>
 
 <style scoped>
 .badge {
-  position: absolute; top: 12px; right: 14px; z-index: 20;
-  min-width: 30px; height: 30px; padding: 0 6px; box-sizing: border-box;
-  display: grid; place-items: center; border-radius: 7px;
-  background: var(--c-card); color: var(--c-brand);
-  font: 700 15px/1 var(--f-body);
+  /* grey tab running off the right edge, as in the pptx */
+  position: absolute; top: 8px; right: 0; z-index: 20;
+  min-width: 28px; height: 29.5px; padding: 0 2px; box-sizing: border-box;
+  display: grid; place-items: center; border-radius: 6px 0 0 6px;
+  background: #d0cece; color: var(--c-bg);
+  font: 500 23.8px/1 var(--f-display); /* MuseoModerno Medium 28pt, as in the pptx */
 }
-.badge.dark { background: rgba(255,255,255,.75); color: var(--c-tint-deep); }
 .footer {
-  position: absolute; bottom: 14px; left: 0; right: 0; z-index: 20; text-align: center;
-  color: var(--c-muted); font-size: .78em; letter-spacing: .01em;
+  position: absolute; bottom: 4.5px; left: 0; right: 0; z-index: 20; text-align: center;
+  color: #bfbfbf; font-size: 14.2px; letter-spacing: .01em;
 }
-.footer.dark { color: rgba(255,255,255,.65); }
 </style>

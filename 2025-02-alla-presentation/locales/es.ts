@@ -100,6 +100,8 @@ const es: Messages = {
   },
   contacts: {
     title: 'Contacto',
+    connect: 'Hablemos',
+    connectText: 'Estamos aquí para apoyar sus necesidades logísticas en todo el mundo.',
   },
 }
 

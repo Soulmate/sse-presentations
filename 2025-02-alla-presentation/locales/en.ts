@@ -64,7 +64,7 @@ const en = {
     ],
     countriesTitle: 'Supported Countries',
     countriesText: 'We provide customs clearance services for a broad range of countries worldwide, including:',
-    countries: ['Mexico', 'United States', 'European Union', 'And many others'],
+    countries: ['Mexico', 'United States', 'Europe', 'And many others'],
     note: '<strong>Note:</strong> Customs procedures vary by country and airport. Contact us for specific country requirements and tailored support.', // html
   },
   services: {
@@ -99,6 +99,8 @@ const en = {
   },
   contacts: {
     title: 'Contacts',
+    connect: 'Let’s Connect',
+    connectText: 'We’re here to support your logistics needs worldwide.',
   },
 }
 

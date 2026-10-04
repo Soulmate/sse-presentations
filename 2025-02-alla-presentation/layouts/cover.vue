@@ -16,7 +16,7 @@ defineProps<{ image: string; logo?: string }>()
 <style scoped>
 .content { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; }
 .logo {
-  width: 54%; height: auto;
+  width: 54.2%; height: auto; /* as in the pptx */
   filter: drop-shadow(0 6px 40px rgba(0,0,0,.25));
   animation: rise 1.4s cubic-bezier(.2,.7,.2,1) .2s both;
 }
