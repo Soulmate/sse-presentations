@@ -1,10 +1,11 @@
 <script setup lang="ts">
-// Half photo, half content. side = where the photo goes; logo = optional logo centred on the photo.
-withDefaults(defineProps<{ image: string; side?: 'left' | 'right'; logo?: string; noBadge?: boolean; noFooter?: boolean }>(), { side: 'left' })
+// Photo + content side by side. side = where the photo goes; photoWidth = its share of the slide (default half);
+// logo = optional logo centred on the photo.
+withDefaults(defineProps<{ image: string; side?: 'left' | 'right'; photoWidth?: string; logo?: string; noBadge?: boolean; noFooter?: boolean }>(), { side: 'left', photoWidth: '50%' })
 </script>
 
 <template>
-  <div class="slidev-layout split" :class="side">
+  <div class="slidev-layout split" :class="side" :style="{ '--photo': photoWidth }">
     <div class="photo kenburns">
       <img :src="image" alt="" />
       <img v-if="logo" class="logo" :src="logo" alt="SSE" />
@@ -15,7 +16,8 @@ withDefaults(defineProps<{ image: string; side?: 'left' | 'right'; logo?: string
 </template>
 
 <style scoped>
-.split { display: grid; grid-template-columns: 1fr 1fr; }
+.split.left { display: grid; grid-template-columns: var(--photo) 1fr; }
+.split.right { display: grid; grid-template-columns: 1fr var(--photo); }
 .split.right .photo { order: 2; }
 /* overlay strength per side, as in the pptx */
 .split.left .photo { --tint-alpha: .6; }
@@ -29,6 +31,6 @@ withDefaults(defineProps<{ image: string; side?: 'left' | 'right'; logo?: string
 @keyframes rise { from { opacity: 0; transform: scale(1.15); filter: blur(8px); } }
 </style>
 <style scoped>
-.split.left :deep(.footer) { left: 50%; }
-.split.right :deep(.footer) { right: 50%; }
+.split.left :deep(.footer) { left: var(--photo); }
+.split.right :deep(.footer) { right: var(--photo); }
 </style>

@@ -1,5 +1,8 @@
 # SSE deck (Slidev)
 
+Run all commands inside this folder (the repo root has no package.json):
+
+    cd 2025-02-alla-presentation
     npm install
     npm run dev             # live preview at http://localhost:3030, hot reload (add ?lang=es for Spanish)
     npm run export:en       # -> slides-en-export.pdf

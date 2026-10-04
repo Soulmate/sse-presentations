@@ -88,6 +88,15 @@ const en = {
     title: 'Industries We Serve',
     items: ['Automotive', 'Aerospace', 'Electronics', 'Healthcare', 'Fashion', 'Documents'],
   },
+  references: {
+    title: 'Our References',
+    lead: 'Trusted by leading companies across industries.',
+    rows: [
+      { title: 'Proven experience', text: 'Working with global brands and critical shipments.' },
+      { title: 'High compliance standards', text: 'Meeting industry-specific requirements.' },
+      { title: 'Long-term partnerships', text: 'Built on reliability, flexibility and service quality.' },
+    ],
+  },
   contacts: {
     title: 'Contacts',
   },

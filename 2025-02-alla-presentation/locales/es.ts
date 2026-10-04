@@ -89,6 +89,15 @@ const es: Messages = {
     title: 'Industrias que atendemos',
     items: ['Automotriz', 'Aeroespacial', 'Electrónica', 'Salud', 'Moda', 'Documentos'],
   },
+  references: {
+    title: 'Nuestras referencias',
+    lead: 'La confianza de empresas líderes de distintos sectores.',
+    rows: [
+      { title: 'Experiencia comprobada', text: 'Trabajando con marcas globales y envíos críticos.' },
+      { title: 'Altos estándares de cumplimiento', text: 'Cumpliendo con los requisitos específicos de cada sector.' },
+      { title: 'Relaciones a largo plazo', text: 'Basadas en la fiabilidad, la flexibilidad y la calidad del servicio.' },
+    ],
+  },
   contacts: {
     title: 'Contacto',
   },
