@@ -80,36 +80,29 @@ layout: page
 ---
 
 <div class="obc">
-<div class="card a-rise" style="--d: 150ms">
-  <h2>{{ t.obc.whatTitle }}</h2>
-  <p>{{ t.obc.whatText }}</p>
-</div>
-<div class="card a-rise" style="--d: 300ms">
-  <h2>{{ t.obc.howTitle }}</h2>
-  <p>{{ t.obc.howText }}</p>
+<div class="cards">
+  <div class="card"><h2>{{ t.obc.whatTitle }}</h2><p class="body-text">{{ t.obc.whatText }}</p></div>
+  <div class="card"><h2>{{ t.obc.howTitle }}</h2><p class="body-text">{{ t.obc.howText }}</p></div>
 </div>
 <div class="perks">
-  <div class="a-pop" style="--d: 650ms"><img src="/img/icons/fast-delivery.png" alt="" /><h3>{{ t.obc.perks[0] }}</h3></div>
-  <div class="a-pop" style="--d: 770ms"><img src="/img/icons/secure-handling.png" alt="" /><h3>{{ t.obc.perks[1] }}</h3></div>
-  <div class="a-pop" style="--d: 890ms"><img src="/img/icons/real-time-tracking.png" alt="" /><h3>{{ t.obc.perks[2] }}</h3></div>
-  <div class="a-pop" style="--d: 1010ms"><img src="/img/icons/peace-of-mind.png" alt="" /><h3>{{ t.obc.perks[3] }}</h3></div>
+  <div><span class="bubble"><tabler-run /></span><h3>{{ t.obc.perks[0] }}</h3></div>
+  <div><span class="bubble"><tabler-shield-lock /></span><h3>{{ t.obc.perks[1] }}</h3></div>
+  <div><span class="bubble"><tabler-map-2 /></span><h3>{{ t.obc.perks[2] }}</h3></div>
+  <div><span class="bubble"><tabler-mood-smile-beam /></span><h3>{{ t.obc.perks[3] }}</h3></div>
 </div>
 </div>
 
 <style>
-/* Two full-width cards and a 2x2 grid of perks; positions and sizes taken from the pptx */
-.obc { margin: 36.6px 9.5px 0 10.3px; }
-.obc .card { height: 107.4px; box-sizing: border-box; padding: 13.2px 6px 0 13px; border-radius: 3px; }
-.obc .card + .card { margin-top: 12.6px; }
-.obc .card h2 { font-size: 26.2px; line-height: 1.2; color: var(--c-ink); margin-bottom: 9px; }
-.obc .card p { font-size: 12.9px; line-height: 21.8px; white-space: pre-line; } /* \n in the text = line break */
-/* Spanish: the second card is taller and the perks sit lower, as in the Spanish pptx */
-:lang(es) .obc .card + .card { height: 122px; }
-:lang(es) .obc .perks { margin-top: 14.9px; }
-.obc .perks { display: grid; grid-template-columns: repeat(2, 447px); justify-content: center; row-gap: 35.3px; margin-top: 14.2px; text-align: center; }
-.obc .perks > div { display: flex; flex-direction: column; align-items: center; gap: 12px; }
-.obc .perks img { width: 32.3px; height: 32.3px; }
-.obc .perks h3 { font-size: 16.2px; }
+/* Two cards side by side with a brand stripe on top and four perks in a row below (the pre-reference layout) */
+.obc { margin: 72px 9.5px 0; }
+.obc .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.obc .card { border-top: 4px solid var(--c-brand); border-radius: 3px; padding: 22px 24px 24px; }
+.obc .card h2 { font-size: 22.85px; line-height: 1.2; color: var(--c-ink); margin-bottom: 14px; }
+.obc .card p { white-space: pre-line; } /* \n in the text = line break */
+.obc .perks { display: grid; grid-template-columns: repeat(4, 1fr); margin-top: 40px; text-align: center; }
+.obc .perks > div { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.obc .perks .bubble { font-size: 27px; }
+.obc .perks h3 { font-size: 16.2px; line-height: 1.2; }
 </style>
 
 ---
