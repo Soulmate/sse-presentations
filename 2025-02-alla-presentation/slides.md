@@ -145,15 +145,15 @@ layout: page
 <div class="quote selectable">
 <h2>{{ t.quote.beforeTitle }}</h2>
 <div class="boxes">
-  <div class="box"><h3>{{ t.quote.before[0].title }}</h3><ul><li v-for="x in t.quote.before[0].items" :key="x">{{ x }}</li></ul></div>
-  <div class="box"><h3>{{ t.quote.before[1].title }}</h3><ul><li v-for="x in t.quote.before[1].items" :key="x">{{ x }}</li></ul></div>
-  <div class="box"><h3>{{ t.quote.before[2].title }}</h3><ul><li v-for="x in t.quote.before[2].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-package />{{ t.quote.before[0].title }}</h3><ul><li v-for="x in t.quote.before[0].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-route />{{ t.quote.before[1].title }}</h3><ul><li v-for="x in t.quote.before[1].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-clock />{{ t.quote.before[2].title }}</h3><ul><li v-for="x in t.quote.before[2].items" :key="x">{{ x }}</li></ul></div>
 </div>
 <h2>{{ t.quote.afterTitle }}</h2>
 <div class="boxes">
-  <div class="box"><h3>{{ t.quote.after[0].title }}</h3><ul><li v-for="x in t.quote.after[0].items" :key="x">{{ x }}</li></ul></div>
-  <div class="box"><h3>{{ t.quote.after[1].title }}</h3><ul><li v-for="x in t.quote.after[1].items" :key="x">{{ x }}</li></ul></div>
-  <div class="box"><h3>{{ t.quote.after[2].title }}</h3><ul><li v-for="x in t.quote.after[2].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-building-factory-2 />{{ t.quote.after[0].title }}</h3><ul><li v-for="x in t.quote.after[0].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-files />{{ t.quote.after[1].title }}</h3><ul><li v-for="x in t.quote.after[1].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-building-warehouse />{{ t.quote.after[2].title }}</h3><ul><li v-for="x in t.quote.after[2].items" :key="x">{{ x }}</li></ul></div>
 </div>
 </div>
 
@@ -176,9 +176,9 @@ layout: page
 
 <h2 class="sub">{{ t.customs.docsTitle }}</h2>
 <div class="boxes selectable">
-  <div class="box"><h3>{{ t.customs.docs[0].title }}</h3><ul><li v-for="x in t.customs.docs[0].items" :key="x">{{ x }}</li></ul></div>
-  <div class="box"><h3>{{ t.customs.docs[1].title }}</h3><ul><li v-for="x in t.customs.docs[1].items" :key="x">{{ x }}</li></ul></div>
-  <div class="box"><h3>{{ t.customs.docs[2].title }}</h3><ul><li v-for="x in t.customs.docs[2].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-file-invoice />{{ t.customs.docs[0].title }}</h3><ul><li v-for="x in t.customs.docs[0].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-file-certificate />{{ t.customs.docs[1].title }}</h3><ul><li v-for="x in t.customs.docs[1].items" :key="x">{{ x }}</li></ul></div>
+  <div class="box"><h3><tabler-id />{{ t.customs.docs[2].title }}</h3><ul><li v-for="x in t.customs.docs[2].items" :key="x">{{ x }}</li></ul></div>
 </div>
 <div class="bottom selectable">
   <div>
@@ -231,31 +231,25 @@ layout: page
 
 # {{ t.services.title }}
 
-<div class="svc">
-  <img src="/img/icons/nfo.png" alt="" />
-  <div><h3>{{ t.services.items[0].title }}</h3><ul class="bullets"><li v-for="x in t.services.items[0].items" :key="x" v-html="x" /></ul></div>
-</div>
-<div class="svc">
-  <img src="/img/icons/air-charter.png" alt="" />
-  <div><h3>{{ t.services.items[1].title }}</h3><ul class="bullets"><li v-for="x in t.services.items[1].items" :key="x" v-html="x" /></ul></div>
-</div>
-<div class="svc">
-  <img src="/img/icons/express-road.png" alt="" />
-  <div><h3>{{ t.services.items[2].title }}</h3><ul class="bullets"><li v-for="x in t.services.items[2].items" :key="x" v-html="x" /></ul></div>
+<div class="boxes">
+  <div class="box"><img src="/img/icons/nfo.png" alt="" /><h3>{{ t.services.items[0].title }}</h3><ul><li v-for="x in t.services.items[0].items" :key="x" v-html="x" /></ul></div>
+  <div class="box"><img src="/img/icons/air-charter.png" alt="" /><h3>{{ t.services.items[1].title }}</h3><ul><li v-for="x in t.services.items[1].items" :key="x" v-html="x" /></ul></div>
+  <div class="box"><img src="/img/icons/express-road.png" alt="" /><h3>{{ t.services.items[2].title }}</h3><ul><li v-for="x in t.services.items[2].items" :key="x" v-html="x" /></ul></div>
 </div>
 
 </div>
 
 <style>
-/* Three sections, icon on the left; positions and sizes taken from the pptx */
+/* Three cards with a brand stripe on top, icon above the title (the pre-reference layout); title size as in the pptx */
 .services { margin: 0 9.5px; }
 .services h1 { font-size: 38.26px; margin: 9.2px 0 0; }
 :lang(es) .services h1 { font-size: 31.44px; margin: 15.3px 0 0; } /* longer Spanish title, one line as in the Spanish pptx */
-:lang(es) .services .svc:first-of-type { margin-top: 31px; }
-.services .svc { display: grid; grid-template-columns: 38.7px 1fr; column-gap: 14.3px; height: 155.9px; }
-.services .svc:first-of-type { margin-top: 29px; }
-.services .svc img { width: 38.7px; height: 38.7px; }
-.services .svc h3 { font-size: 18.7px; line-height: 1.2; margin: -2.1px 0 12.2px; }
+.services .boxes { margin-top: 36px; }
+.services .box { border-top: 4px solid var(--c-brand); padding: 20px 18px 16px; }
+.services .box img { display: block; width: 38.7px; height: 38.7px; margin-bottom: 16px; }
+:lang(es) .services .boxes { margin-top: 26px; } /* longer Spanish texts: tighter, so the cards clear the footer */
+:lang(es) .services .box { padding-top: 15px; }
+:lang(es) .services .box img { margin-bottom: 11px; }
 </style>
 
 ---

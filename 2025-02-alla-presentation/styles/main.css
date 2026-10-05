@@ -67,9 +67,13 @@ strong { color: var(--c-ink); font-weight: 700; }
 .boxes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15.1px; }
 .box { background: var(--c-card); box-sizing: border-box; padding: 15px 15px 0; border-radius: 3px; }
 .box h3 { font-size: 18.7px; line-height: 1.2; margin-bottom: 12px; }
+/* optional icon hangs in the bullet column, so the title text lines up with the item text */
+.box h3:has(> svg) { position: relative; padding-left: 23px; }
+.box h3 > svg { position: absolute; left: -4.5px; top: -1.3px; font-size: 19px; color: var(--c-brand); } /* centred on the cap height */
 .box ul, ul.bullets { list-style: none; margin: 0; padding: 0; font-size: 14.9px; line-height: 24.2px; }
 .box li, ul.bullets li { position: relative; padding-left: 23px; margin-bottom: 5px; }
 .box li::before, ul.bullets li::before { content: '•'; position: absolute; left: 0; }
+.box li::before { left: 3.5px; } /* bullets share the icon's centre line */
 
 /* Slidev disables text selection on slides; allow it where people may want to copy (contacts, checklists) */
 .selectable { user-select: text; }
