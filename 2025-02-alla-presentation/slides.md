@@ -317,17 +317,17 @@ photoWidth: 62.34%
 .logos {
   position: absolute; z-index: 5; top: 50%; left: calc(100% - var(--photo) + 16px); right: 24px; translate: 0 -50%;
   display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 102px;
-  background: rgba(255,255,255,.9); backdrop-filter: blur(6px); border-radius: 10px;
+  background: rgba(255,255,255,.6); backdrop-filter: blur(6px); border-radius: 10px;
   box-shadow: 0 12px 40px rgba(13,53,80,.25); padding: 7px 8px;
 }
 .logos .cell { position: relative; }
 .logos img { width: 100%; height: 100%; box-sizing: border-box; padding: 26px 14px; object-fit: contain; }
 /* vertical dividers run unbroken through both rows, stopping short of the panel top and bottom;
-   one horizontal divider, inset from the panel sides */
-.logos .cell:not(:nth-child(4n))::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 1px; background: var(--c-line); }
+   one horizontal divider, inset from the panel sides; brand at 5%, barely there */
+.logos .cell:not(:nth-child(4n))::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 1px; background: rgba(18,78,115,.05); }
 .logos .cell:nth-child(-n+4)::after { top: 18%; }
 .logos .cell:nth-child(n+5)::after { bottom: 18%; }
-.logos::before { content: ''; position: absolute; left: 22px; right: 22px; top: 50%; height: 1px; background: var(--c-line); }
+.logos::before { content: ''; position: absolute; left: 22px; right: 22px; top: 50%; height: 1px; background: rgba(18,78,115,.05); }
 /* square-ish marks look bigger than wordmarks: shrink them a bit */
 .logos img.racing-cargo, .logos img.herport { padding: 22px 18px; }
 .logos img.osa { padding: 24px 18px; }
