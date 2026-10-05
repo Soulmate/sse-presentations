@@ -114,21 +114,19 @@ layout: page
 # {{ t.timeline.title }}
 
 <Timeline class="tl-main" :steps="t.timeline.steps">
-  <template #icon-0><img src="/img/icons/request-confirmed.png" alt="" /></template>
-  <template #icon-1><img src="/img/icons/courier-pick-up.png" alt="" /></template>
-  <template #icon-2><img src="/img/icons/departure.png" alt="" /></template>
-  <template #icon-3><img src="/img/icons/arrival.png" alt="" /></template>
-  <template #icon-4><img src="/img/icons/final-delivery.png" alt="" /></template>
+  <template #icon-0><tabler-file-check /></template>
+  <template #icon-1><tabler-package /></template>
+  <template #icon-2><tabler-plane-departure /></template>
+  <template #icon-3><tabler-plane-arrival /></template>
+  <template #icon-4><tabler-user-check /></template>
 </Timeline>
 
 </div>
 
 <style>
-/* Positions taken from the pptx */
-.mission { margin-top: 48.2px; }
-.mission h1 { margin-left: 8.6px; }
-.tl-main { margin: 32.5px 0 0 2.4px; }
-.tl-main img { width: 29px; height: 29px; }
+/* The pre-reference layout: title, then the timeline across the full width */
+.mission { margin: 72px 9.5px 0; }
+.tl-main { margin-top: 44px; }
 </style>
 
 ---
@@ -198,17 +196,19 @@ layout: page
 .customs .box { height: 176.4px; }
 .customs .box h3 { font-weight: 700; }
 .customs .boxes { margin-bottom: 1.4em; }
-.customs .bottom { display: grid; grid-template-columns: 1fr 369px; gap: 1.6em; align-items: center; } /* Note centred on the Supported Countries block */
+.customs .bottom { display: grid; grid-template-columns: 1fr 310px; gap: 1.6em; align-items: stretch; } /* Note as tall as the Supported Countries block */
 .customs .countries { margin: .5em 0 .7em; }
 .customs .chips { display: flex; flex-wrap: wrap; gap: .45em; }
 .customs .chips span {
   display: inline-flex; align-items: center; gap: .35em; padding: .3em .85em; border-radius: 999px;
-  /* all chips alike: outlined, flags and the globe with the same padding */
-  color: var(--c-brand); border: 1.5px solid var(--c-line); font-size: .8em; font-weight: 600;
+  /* country chips filled, "And many others" outlined; same border width, so all are the same size */
+  background: var(--c-brand); color: #fff; border: 1.5px solid var(--c-brand); font-size: .8em; font-weight: 600;
 }
+.customs .chips span.more { background: transparent; color: var(--c-brand); border-color: var(--c-line); }
+.customs .chips span:not(.more) svg { box-shadow: 0 0 0 1.5px rgba(255,255,255,.8); border-radius: 50%; }
 .customs .chips svg { font-size: 1.3em; }
 .customs .note {
-  display: grid; grid-template-columns: auto 1fr; gap: .7em; align-items: start;
+  display: grid; grid-template-columns: auto 1fr; gap: .7em; align-items: start; align-content: center;
   background: var(--c-card); border-left: 4px solid var(--c-brand); border-radius: 3px; padding: 7px 1.1em;
   font-size: 14.9px; line-height: 20.5px;
 }
@@ -255,23 +255,26 @@ image: img/runway.jpg
 # {{ t.industries.title }}
 
 <div class="ind">
-  <div><img src="/img/icons/automotive.png" alt="" /><span>{{ t.industries.items[0] }}</span></div>
-  <div><img src="/img/icons/aerospace.png" alt="" /><span>{{ t.industries.items[1] }}</span></div>
-  <div><img src="/img/icons/electronics.png" alt="" /><span>{{ t.industries.items[2] }}</span></div>
-  <div><img src="/img/icons/healthcare.png" alt="" /><span>{{ t.industries.items[3] }}</span></div>
-  <div><img src="/img/icons/fashion.png" alt="" /><span>{{ t.industries.items[4] }}</span></div>
-  <div><img src="/img/icons/documents.png" alt="" /><span>{{ t.industries.items[5] }}</span></div>
+  <div><span class="gl"><tabler-car /></span><span>{{ t.industries.items[0] }}</span></div>
+  <div><span class="gl"><tabler-rocket /></span><span>{{ t.industries.items[1] }}</span></div>
+  <div><span class="gl"><tabler-cpu /></span><span>{{ t.industries.items[2] }}</span></div>
+  <div><span class="gl"><tabler-heartbeat /></span><span>{{ t.industries.items[3] }}</span></div>
+  <div><span class="gl"><tabler-hanger /></span><span>{{ t.industries.items[4] }}</span></div>
+  <div><span class="gl"><tabler-file-text /></span><span>{{ t.industries.items[5] }}</span></div>
 </div>
 
 </div>
 
 <style>
-/* Title and a 3x2 grid of icons; positions and sizes taken from the pptx */
-.industries h1 { font-size: 38.7px; margin: 116.1px 0 0 32.1px; }
-:lang(es) .industries h1 { width: 892.65px; margin-left: 22.6px; text-align: center; } /* Spanish: centred over the icon grid */
-.industries .ind { display: grid; grid-template-columns: repeat(3, 297.55px); row-gap: 31px; margin: 26.3px 0 0 22.6px; text-align: center; }
+/* Title centred over a 3x2 grid of icons in glass circles (the pre-reference look) */
+.industries h1 { font-size: 38.7px; width: 892.65px; margin: 88px 0 0 22.6px; text-align: center; }
+.industries .ind { display: grid; grid-template-columns: repeat(3, 297.55px); row-gap: 28px; margin: 28px 0 0 22.6px; text-align: center; }
 .industries .ind > div { display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.industries .ind img { width: 38px; height: 38px; }
+.industries .ind .gl {
+  width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center; box-sizing: border-box;
+  background: rgba(255,255,255,.14); border: 1.5px solid rgba(255,255,255,.45); backdrop-filter: blur(4px);
+}
+.industries .ind .gl svg { font-size: 30px; color: #fff; } /* thin strokes: the global stroke-width override */
 .industries .ind span { font: 500 18.7px/1.2 var(--f-display); }
 </style>
 
@@ -347,6 +350,8 @@ import { brand, mapsUrl } from './brand'
 <!-- right column: contact lines and the QR; the photo half (::photo:: below) carries the title -->
 <div class="contacts">
 
+<h1>{{ t.contacts.title }}</h1>
+
 <ul class="lines selectable">
   <li><tabler-phone /><a :href="`tel:${brand.phone.replace(/\s/g, '')}`">{{ brand.phone }}</a></li>
   <li><tabler-mail /><a :href="`mailto:${brand.email}`">{{ brand.email }}</a></li>
@@ -369,12 +374,13 @@ import { brand, mapsUrl } from './brand'
 <style>
 /* Photo side (usual tint of the split layout): small logo top-left, big two-line title and lead */
 .connect { position: absolute; inset: 0; padding: 48px 56px; display: flex; flex-direction: column; }
-.connect .logo { width: 112px; height: auto; }
-.connect h1 { font-size: 66px; line-height: 1.02; max-width: 300px; margin-top: 96px; } /* wraps to two lines */
+.connect .logo { width: 112px; height: auto; opacity: .38; order: 1; margin-top: auto; } /* 62% transparent, at the bottom */
+.connect h1 { font-size: 66px; line-height: 1.02; max-width: 300px; margin-top: 116.5px; } /* wraps to two lines; same place as when the logo was above it */
 .connect .lead { font-size: 18.7px; line-height: 1.25; max-width: 280px; margin-top: 22px; }
-/* Contacts side: plain icons close to their text, dividers under the text only, the QR as the hero below.
+/* Contacts side: title, plain icons close to their text, dividers under the text only, the QR as the hero below.
    The block is centred in the column height by the layout. */
 .contacts { margin: 0 -10px 0 11px; --text-x: 44px; }
+.contacts h1 { font-size: 38.7px; margin-bottom: 18px; } /* same size as the titles of the content slides */
 .contacts .lines { list-style: none; margin: 0; padding: 0; }
 .contacts .lines li { position: relative; display: grid; grid-template-columns: 26px 1fr; column-gap: 18px; align-items: center; min-height: 52px; box-sizing: border-box; }
 .contacts .lines li + li::before { content: ''; position: absolute; top: 0; left: var(--text-x); right: 0; height: 1px; background: var(--c-line); }
@@ -384,5 +390,5 @@ import { brand, mapsUrl } from './brand'
 .contacts .lines a { color: var(--c-brand); text-decoration: none; font-size: 18.7px; line-height: 1.3; }
 .contacts .lines a:hover { text-decoration: underline; text-underline-offset: 3px; }
 /* QR left edge on the text line of the contacts */
-.contacts .qr { display: block; width: 230px; height: 230px; margin: 26px 0 0 calc(var(--text-x) - 13.6px); } /* the png has a 13.6px quiet zone */
+.contacts .qr { display: block; width: 200px; height: 200px; margin: 20px 0 0 calc(var(--text-x) - 13.6px); } /* the png has a 13.6px quiet zone */
 </style>

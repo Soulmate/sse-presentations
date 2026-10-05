@@ -1,6 +1,6 @@
 <script setup lang="ts">
-// Horizontal process timeline: a grey line through square icon tiles, with a short drop line to each step's text.
-// Geometry follows the pptx. `i` staggers the entrance.
+// Horizontal process timeline: a line through round brand nodes (icon in the slot, step number in a badge),
+// title and text centred under each node.
 defineProps<{ steps: { title: string; text: string }[] }>()
 </script>
 
@@ -8,28 +8,30 @@ defineProps<{ steps: { title: string; text: string }[] }>()
   <div class="tl">
     <div class="track" />
     <div v-for="(s, i) in steps" :key="i" class="step">
-      <div class="node a-pop" :style="{ '--d': `${250 + i * 140}ms` }"><slot :name="`icon-${i}`" /></div>
-      <div class="drop" />
-      <!-- words never break inside (e.g. at the hyphen of "Pick-Up") -->
-      <h3 class="a-rise" :style="{ '--d': `${330 + i * 140}ms` }"><template v-for="(w, j) in s.title.split(' ')" :key="j">{{ j ? ' ' : '' }}<span class="w">{{ w }}</span></template></h3>
-      <p class="a-rise" :style="{ '--d': `${400 + i * 140}ms` }">{{ s.text }}</p>
+      <div class="node"><slot :name="`icon-${i}`" /><span class="num">{{ i + 1 }}</span></div>
+      <h3>{{ s.title }}</h3>
+      <p>{{ s.text }}</p>
     </div>
   </div>
 </template>
 
 <style scoped>
-.tl { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 177.75px; }
-.track { position: absolute; left: 7.6px; right: 7.6px; top: 22.9px; height: 2.1px; background: var(--c-line); }
+.tl { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 22px; }
+.track { position: absolute; left: 0; right: 0; top: 31px; height: 2px; background: var(--c-line); }
 .step { position: relative; text-align: center; display: flex; flex-direction: column; align-items: center; }
 .node {
-  position: relative; z-index: 1; width: 47.9px; height: 45.9px; border-radius: 3px;
-  background: var(--c-card); color: #325f7b; font-size: 29px; display: grid; place-items: center;
+  position: relative; z-index: 1; width: 64px; height: 64px; border-radius: 50%;
+  background: var(--c-brand); color: #fff; font-size: 28px; display: grid; place-items: center;
+  box-shadow: 0 0 0 7px var(--c-bg);
 }
-.node :deep([stroke-width="2"]), .node :deep([stroke-width="1.5"]) { stroke-width: 1.33; }
-.drop { width: 2.1px; height: 30.2px; background: var(--c-line); }
-h3 { font-size: 18.7px; line-height: 23.8px; max-width: 122px; margin: 14.5px 0 12.7px; }
-.w { white-space: nowrap; }
-p { font-size: 14.9px; line-height: 24.7px; max-width: 133px; }
-.step:last-child p { max-width: 115px; } /* the last text box is narrower in the pptx */
-:lang(es) .step:last-child p { max-width: 133px; } /* but not in the Spanish one */
+.node :deep([stroke-width]) { stroke-width: 1.5; }
+/* number badge in the card colour, so the slide has no extra accent colour */
+.num {
+  position: absolute; top: -4px; right: -6px; width: 24px; height: 24px; border-radius: 50%; box-sizing: border-box;
+  background: var(--c-card); color: var(--c-brand); border: 2px solid var(--c-bg);
+  font: 500 12px/20px var(--f-display); text-align: center;
+}
+/* titles take three lines' height (the longest wrap to three), so the texts below start on one line */
+h3 { font-size: 18.7px; line-height: 23.8px; min-height: 71.4px; margin: 18px 0 10px; display: flex; align-items: center; justify-content: center; }
+p { font-size: 14.9px; line-height: 24.2px; }
 </style>
