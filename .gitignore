@@ -3,3 +3,4 @@ dist/
 *-export.pdf
 .slidev/
 _site/
+slides.*.md

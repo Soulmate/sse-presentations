@@ -283,6 +283,7 @@ layout: split
 image: img/cover.jpg
 side: right
 photoWidth: 62.34%
+skipIn: no-refs  # left out of the "no-refs" variant (built by scripts/build-site.mjs)
 ---
 
 <div class="refs-text">
